@@ -3,8 +3,8 @@
 | Student's name | SCIPER |
 | -------------- | ------ |
 | Anton Hosgood | 302242 |
-| | |
-| | |
+| Jiabao Wen | 315294 |
+| Zhe Xiong | 338700 |
 
 [Milestone 1](#milestone-1) • [Milestone 2](#milestone-2) • [Milestone 3](#milestone-3)
 
