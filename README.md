@@ -58,7 +58,7 @@ The exploratory data analysis phase will involve the following:
 
 - Show basic statistics and provide insights about the data, including data distribution, data types, and data quality checks
 
-The exploratory data analysis has been carried out in `eda.py`. The dataset does not require any cleaning. It will, however, need to be pre-processed a bit to get it into a format usable for our visualisation.
+The exploratory data analysis has been carried out in `eda.py`. The dataset, for the most part, does not require any cleaning (besides `song_data.csv` which contains some missing values). It will become more apparent later on to what extent this will be important in our visualisation, since we cannot impute the values nor does it make sense to remove these rows. It will, however, need to be pre-processed a bit to get it into a format usable for our visualisation.
 
 ### Related work
 
