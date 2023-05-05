@@ -96,6 +96,47 @@ Overall, this project aims to provide an analysis through visualisation of the E
 
 **10% of the final grade**
 
+The goal of our project is to create a visually engaging and informative website that explores the voting patterns of the Eurovision Song Contest. The site will feature various data visualisations that will help users to better understand how different countries vote for each other in this annual competition. We plan to create an interactive map that displays which countries tend to vote for which others, as well as providing another interactive visual to explore polling data that will give insight into how different factors can impact voting patterns. By providing this information in an easily accessible format, we hope to deepen users' understanding of the Eurovision Song Contest and its unique cultural significance across Europe and beyond.
+
+Our website will consist of a main landing page, from which users will be able to navigate to other pages containing the visualisations. The landing page will provide a brief overview of the Eurovision Song Contest and will outline the purpose of the visualisations.
+
+[Landing page]
+
+### Visualising the Voting Data
+
+Each country’s public and jury can allocate a set of points to other countries. In this visualisation, the user will be able to, for a chosen year, select a country and see where the country’s votes went. As shown below, arrows will come out from the country pointing to the countries which received votes. The more points a country receives, the bolder the arrow and the more prominent the shading of the country. There will be a three-way toggle which will allow us to view the televotes, jury votes, and the combined votes. Right-clicking will allow the user to switch the view and see which countries voted for the selected country.
+
+To the side, we will have a bar chart that will also visualise the voting data. For example, in this case Germany gave the United Kingdom the most points, so the United Kingdom is at the top of the bar chart, has the boldest arrow pointing to it, and is most prominently shaded.
+
+This visualisation will allow us to see in one frame how a country votes. By varying the year, we can see if the voting pattern is the similar over time. It will also allow us to see geographic clusters (e.g. we will be able to quickly confirm if the Nordic countries are all voting for each other).
+
+[Voting map]
+
+The lectures that we will need for this visualisation are: Interactions, Dos and Don’ts, Design for Data Viz, Maps, Graph Visualization.
+
+The tools that we will need are: HTML/JS for interactive webpage elements, and [barplot](https://d3-graph-gallery.com/barplot.html) and [connection map](https://d3-graph-gallery.com/connectionmap.html).
+
+### Visualising the Polling Data
+
+There are two main fan polls that take place before each edition of Eurovision to determine which countries are the fans’ favourites. Our data contains the average ranking of each country in both polls. It will be possible to explore the polls by selecting a year and which of the two polls the user would like to see. On the left, we will have a bar chart that will allow us to see who the favourites were each year. On the right, we will be able to select a country and a poll and view how that country’s placement in the poll has changed over time. This will allow us to discover insights such as whether a country is a consistently strong competitor or not.
+
+[Polling 1]
+
+We will be able to select the year and country with drop down lists. Selecting a country will be done with the flags as they are more recognisable.
+
+[Polling 2]
+
+The lectures that we will need for this visualisation are: Interactions, Dos and Don’ts, Design for Data Viz.
+
+The tools that we will need are: HTML/JS for interactive webpage elements, and [barplot](https://d3-graph-gallery.com/barplot.html) and [line chart](https://d3-graph-gallery.com/line.html).
+
+### Extra Ideas
+
+The components of our site are isolated from each other, meaning that each page can be developed independently of each other. These visualisations will be our core, but should we successfully create them and wish to go further, we can use the song data. Here are some potential ideas:
+
+- Plot distribution of act characteristics over time (e.g. percentage songs that are ballads each year, or average BPM)
+
+- Visualise clusters of songs based on characteristics. We could use a clustering algorithm on the song characteristics to identify clusters of similar songs
 
 ## Milestone 3 (4th June, 5pm)
 
