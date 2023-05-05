@@ -100,7 +100,7 @@ The goal of our project is to create a visually engaging and informative website
 
 Our website will consist of a main landing page, from which users will be able to navigate to other pages containing the visualisations. The landing page will provide a brief overview of the Eurovision Song Contest and will outline the purpose of the visualisations.
 
-[Landing page]
+<img src="/img/landing_page.jpg" alt="Landing page" style="width: 50%; height: auto;">
 
 ### Visualising the Voting Data
 
@@ -110,7 +110,7 @@ To the side, we will have a bar chart that will also visualise the voting data. 
 
 This visualisation will allow us to see in one frame how a country votes. By varying the year, we can see if the voting pattern is the similar over time. It will also allow us to see geographic clusters (e.g. we will be able to quickly confirm if the Nordic countries are all voting for each other).
 
-[Voting map]
+<img src="/img/voting.jpg" alt="Voting" style="width: 50%; height: auto;">
 
 The lectures that we will need for this visualisation are: Interactions, Dos and Don’ts, Design for Data Viz, Maps, Graph Visualization.
 
@@ -120,11 +120,11 @@ The tools that we will need are: HTML/JS for interactive webpage elements, and [
 
 There are two main fan polls that take place before each edition of Eurovision to determine which countries are the fans’ favourites. Our data contains the average ranking of each country in both polls. It will be possible to explore the polls by selecting a year and which of the two polls the user would like to see. On the left, we will have a bar chart that will allow us to see who the favourites were each year. On the right, we will be able to select a country and a poll and view how that country’s placement in the poll has changed over time. This will allow us to discover insights such as whether a country is a consistently strong competitor or not.
 
-[Polling 1]
+<img src="/img/polling1.jpg" alt="Polling 1" style="width: 50%; height: auto;">
 
 We will be able to select the year and country with drop down lists. Selecting a country will be done with the flags as they are more recognisable.
 
-[Polling 2]
+<img src="/img/polling2.jpg" alt="Polling 2" style="width: 50%; height: auto;">
 
 The lectures that we will need for this visualisation are: Interactions, Dos and Don’ts, Design for Data Viz.
 
