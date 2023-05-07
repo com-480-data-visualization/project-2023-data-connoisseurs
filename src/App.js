@@ -45,7 +45,8 @@ function App() {
                         </a>
                     </div>
                 </Content>
-                <Drawer title="Germany" placement="right" onClose={onClose}
+                <Drawer title="Germany" placement="right" mask={false}
+                        onClose={onClose}
                         open={open}>
                     <div>
                         <img style={{width: 200, height: 600}}
