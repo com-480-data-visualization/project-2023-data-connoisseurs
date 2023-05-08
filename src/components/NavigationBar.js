@@ -2,7 +2,7 @@
 import * as React from "react";
 import { Button, ButtonGroup, Icon } from "@chakra-ui/react";
 
-export function Header() {
+export function NavigationBar() {
   return (
     <header className="p-3 border-bottom d-flex flex-row justify-content-between">
       <div className="mx-3 d-flex align-items-center">

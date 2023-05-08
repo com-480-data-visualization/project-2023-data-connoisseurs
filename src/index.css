@@ -20,3 +20,7 @@ button.chakra-button:active, button.chakra-button[data-active] {
 button.chakra-button:hover, button.chakra-button[data-hover] {
     text-underline-offset: 8px;
 }
+
+div.pf-c-drawer__panel {
+    background-color: #F7FAFC;
+}
