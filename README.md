@@ -96,6 +96,8 @@ Overall, this project aims to provide an analysis through visualisation of the E
 
 **10% of the final grade**
 
+Our demo site can be accessed on localhost:3000.
+
 The goal of our project is to create a visually engaging and informative website that explores the voting patterns of the Eurovision Song Contest. The site will feature various data visualisations that will help users to better understand how different countries vote for each other in this annual competition. We plan to create an interactive map that displays which countries tend to vote for which others, as well as providing another interactive visual to explore polling data that will give insight into how different factors can impact voting patterns. By providing this information in an easily accessible format, we hope to deepen users' understanding of the Eurovision Song Contest and its unique cultural significance across Europe and beyond.
 
 Our website will consist of a main landing page, from which users will be able to navigate to other pages containing the visualisations. The landing page will provide a brief overview of the Eurovision Song Contest and will outline the purpose of the visualisations.
