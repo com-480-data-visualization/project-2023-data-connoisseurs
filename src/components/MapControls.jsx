@@ -20,7 +20,7 @@ export function MapControls() {
   const [type, setType] = React.useState(VoteType.TELE);
 
   return (
-    <div className="absolute left-0 top-0 z-20 flex flex-col align-top">
+    <div className="absolute left-0 top-0 z-10 flex flex-col align-top">
       <ToggleGroup.Root
         className={GroupClass}
         type="single"

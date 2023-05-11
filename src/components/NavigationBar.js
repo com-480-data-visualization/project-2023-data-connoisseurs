@@ -20,7 +20,7 @@ function MenuLink({ href, isActive, id, children }) {
 
 export function NavigationBar() {
   return (
-    <header className="flex flex-row justify-between px-8 py-4">
+    <header className="z-40 flex flex-row justify-between px-8 py-4 shadow-md">
       <div className="flex flex-row space-x-1">
         <img
           className="h-5 w-5 fill-black dark:fill-white"

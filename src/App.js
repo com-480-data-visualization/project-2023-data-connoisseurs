@@ -5,7 +5,7 @@ import { VotesPage } from "./pages/VotesPage";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App flex h-screen flex-col">
       <NavigationBar />
       <VotesPage />
     </div>

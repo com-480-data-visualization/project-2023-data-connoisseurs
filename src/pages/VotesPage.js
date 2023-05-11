@@ -15,12 +15,10 @@ export function VotesPage() {
   }, []);
 
   return (
-    <main className="relative">
-      <aside className="absolute right-0 top-0 z-20 h-full w-1/3">
-        <CountryVotesDrawer country={country} onClose={onCloseDrawer} />
-      </aside>
+    <main className="relative grow">
       <MapControls />
       <EuropeMap onClickCountry={onClickCountry} />
+      <CountryVotesDrawer country={country} onClose={onCloseDrawer} />
     </main>
   );
 }
