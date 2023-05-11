@@ -1,13 +1,8 @@
 import * as React from "react";
 import { useCallback, useState } from "react";
-import {
-  Drawer,
-  DrawerContent,
-  DrawerContentBody,
-} from "@patternfly/react-core";
-import { CountryVotesDrawer } from "../components/CountryVotesDrawer";
-import { EuropeMap } from "../components/EuropeMap";
 import { MapControls } from "../components/MapControls";
+import { EuropeMap } from "../components/EuropeMap";
+import { CountryVotesDrawer } from "../components/CountryVotesDrawer";
 
 export function VotesPage() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -20,17 +15,12 @@ export function VotesPage() {
   }, []);
 
   return (
-    <Drawer isExpanded={isDrawerOpen}>
-      <DrawerContent
-        panelContent={
-          <CountryVotesDrawer country={country} onClose={onCloseDrawer} />
-        }
-      >
-        <DrawerContentBody className="relative">
-          <MapControls />
-          <EuropeMap onClickCountry={onClickCountry} />
-        </DrawerContentBody>
-      </DrawerContent>
-    </Drawer>
+    <main className="relative">
+      <aside className="absolute right-0 top-0 z-20 h-full w-1/3">
+        <CountryVotesDrawer country={country} onClose={onCloseDrawer} />
+      </aside>
+      <MapControls />
+      <EuropeMap onClickCountry={onClickCountry} />
+    </main>
   );
 }
