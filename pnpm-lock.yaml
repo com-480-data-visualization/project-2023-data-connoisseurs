@@ -13,6 +13,9 @@ dependencies:
   '@patternfly/react-core':
     specifier: ^4.276.8
     version: 4.276.8(react-dom@18.2.0)(react@18.2.0)
+  '@radix-ui/colors':
+    specifier: ^0.1.8
+    version: 0.1.8
   '@radix-ui/react-toggle-group':
     specifier: ^1.0.3
     version: 1.0.3(react-dom@18.2.0)(react@18.2.0)
@@ -3330,6 +3333,10 @@ packages:
 
   /@popperjs/core@2.11.7:
     resolution: {integrity: sha512-Cr4OjIkipTtcXKjAsm8agyleBuDHvxzeBoa1v543lbv1YaIwQjESsVcmjiWiPEbC1FIeHOG/Op9kdCmAmiS3Kw==}
+    dev: false
+
+  /@radix-ui/colors@0.1.8:
+    resolution: {integrity: sha512-jwRMXYwC0hUo0mv6wGpuw254Pd9p/R6Td5xsRpOmaWkUHlooNWqVcadgyzlRumMq3xfOTXwJReU0Jv+EIy4Jbw==}
     dev: false
 
   /@radix-ui/primitive@1.0.0:

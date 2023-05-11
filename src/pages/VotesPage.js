@@ -7,6 +7,7 @@ import {
 } from "@patternfly/react-core";
 import { CountryVotesDrawer } from "../components/CountryVotesDrawer";
 import { EuropeMap } from "../components/EuropeMap";
+import { MapControls } from "../components/MapControls";
 
 export function VotesPage() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -25,8 +26,8 @@ export function VotesPage() {
           <CountryVotesDrawer country={country} onClose={onCloseDrawer} />
         }
       >
-        <DrawerContentBody className="position-relative">
-          {/*<MapControls />*/}
+        <DrawerContentBody className="relative">
+          <MapControls />
           <EuropeMap onClickCountry={onClickCountry} />
         </DrawerContentBody>
       </DrawerContent>
