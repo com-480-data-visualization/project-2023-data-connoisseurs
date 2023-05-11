@@ -18,7 +18,9 @@ export function VotesPage() {
     <main className="relative grow">
       <MapControls />
       <EuropeMap onClickCountry={onClickCountry} />
-      <CountryVotesDrawer country={country} onClose={onCloseDrawer} />
+      {isDrawerOpen && (
+        <CountryVotesDrawer country={country} onClose={onCloseDrawer} />
+      )}
     </main>
   );
 }
