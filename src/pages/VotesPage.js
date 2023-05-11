@@ -12,7 +12,9 @@ export function VotesPage() {
     () => setIsDrawerOpen((isOpen) => !isOpen),
     []
   );
-  const onClickCountry = useCallback(({ name_en: country }) => {
+  const onClickCountry = useCallback((feature) => {
+    if (!feature) return;
+    const { name_en: country } = feature;
     setIsDrawerOpen(true);
     setCountry(country);
   }, []);
