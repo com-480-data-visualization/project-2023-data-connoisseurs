@@ -48,9 +48,8 @@ export function EuropeMap({ onClickCountry }) {
         longitude: 6.528,
         zoom: 2.5,
       }}
-      style={{ width: "100vw", height: "100vh" }}
+      className="h-full w-full"
       mapStyle="mapbox://styles/mapbox/streets-v9"
-      // interactiveLayerIds={[EurovisionLayerProps.id]}
       onClick={onClick}
     >
       <Source
