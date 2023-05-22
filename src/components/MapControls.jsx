@@ -11,10 +11,11 @@ export const VoteType = {
   JURY: "votes-jury",
 };
 
-export function MapControls() {
-  const GroupClass = "inline-flex rounded-md shadow-sm text-left mt-2 mx-2";
-  const ItemClass =
+export const GroupClass = "inline-flex rounded-md shadow-sm text-left mt-2 mx-2";
+export const ItemClass =
     "border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-primary data-[state=on]:bg-primary data-[state=on]:text-white hover:bg-gray-100 hover:text-primary focus:z-10 first:rounded-l-lg last:rounded-r-lg ";
+
+export function MapControls() {
 
   const [direction, setDirection] = React.useState(VoteDirection.IN);
   const [type, setType] = React.useState(VoteType.TELE);
