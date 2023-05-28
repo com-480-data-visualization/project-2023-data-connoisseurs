@@ -15,14 +15,14 @@ export function NavigationBar() {
 
   return (
     <header className="z-40 flex flex-row justify-between px-8 py-4 shadow-md">
-      <div className="flex flex-row space-x-1">
+      <a className="flex flex-row space-x-1" href="/">
         <img
           className="h-5 w-5 fill-black dark:fill-white"
           src={Logo}
           alt="Eurovision Logo"
         />
-        <span className="font-bold">EUROVISION GRAPHS</span>
-      </div>
+        <span className="font-bold">VOTING GRAPHS</span>
+      </a>
       <NavigationMenu.Root>
         <NavigationMenu.List>
           <NavigationMenu.Item>
