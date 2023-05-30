@@ -1,18 +1,18 @@
 import * as React from "react";
 
-import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from "victory";
+import { VictoryAxis, VictoryBar, VictoryChart, VictoryTheme } from "victory";
 
 const data = [
-    {country: 1, points: 1},
-    {country: 2, points: 2},
-    {country: 3, points: 3},
-    {country: 4, points: 4},
-    {country: 5, points: 5},
-    {country: 6, points: 6},
-    {country: 7, points: 7},
-    {country: 8, points: 8},
-    {country: 9, points: 10},
-    {country: 10, points: 12}
+  { country: 1, points: 1 },
+  { country: 2, points: 2 },
+  { country: 3, points: 3 },
+  { country: 4, points: 4 },
+  { country: 5, points: 5 },
+  { country: 6, points: 6 },
+  { country: 7, points: 7 },
+  { country: 8, points: 8 },
+  { country: 9, points: 10 },
+  { country: 10, points: 12 },
 ];
 
 export function CountryVotesDrawer({ isOpen, country, onToggle }) {
@@ -46,22 +46,31 @@ export function CountryVotesDrawer({ isOpen, country, onToggle }) {
           ></path>
         </svg>
       </button>
-      <h2 className="text-left font-semibold">{country}</h2>
-        <VictoryChart
-            theme={VictoryTheme.material}
-            domainPadding={{x:5}}
-        >
-            <VictoryAxis
-                tickValues={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-                tickFormat={["UA", "PL", "BE", "CZ", "FR", "FI", "NL", "IT", "SE", "GB"]}
-            />
-            <VictoryBar horizontal
-                        data={data}
-                        x="country"
-                        y="points"
-                        labels={({ datum }) => datum.points}
-            />
-        </VictoryChart>
+      <h1 className="text-left">{country}</h1>
+      <VictoryChart theme={VictoryTheme.material} domainPadding={{ x: 5 }}>
+        <VictoryAxis
+          tickValues={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+          tickFormat={[
+            "UA",
+            "PL",
+            "BE",
+            "CZ",
+            "FR",
+            "FI",
+            "NL",
+            "IT",
+            "SE",
+            "GB",
+          ]}
+        />
+        <VictoryBar
+          horizontal
+          data={data}
+          x="country"
+          y="points"
+          labels={({ datum }) => datum.points}
+        />
+      </VictoryChart>
     </aside>
   );
 }

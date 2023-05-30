@@ -43,6 +43,10 @@ export function VotesPage() {
     ],
     []
   );
+  const countries = useMemo(
+    () => countriesByYear[year].map(([code]) => code),
+    [year]
+  );
 
   const handleToggleDrawer = useCallback(
     () => setIsDrawerOpen((isOpen) => !isOpen),
@@ -68,7 +72,7 @@ export function VotesPage() {
         typeOptions={typeOptions}
         onSelectType={setType}
       />
-      <EuropeMap onClickCountry={handleClickCountry} />
+      <EuropeMap countries={countries} onClickCountry={handleClickCountry} />
       <CountryVotesDrawer
         isOpen={isDrawerOpen}
         country={country}
