@@ -4,14 +4,14 @@ import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons";
 
 export const Dropdown = ({ options, value, onSelect }) => (
   <Select.Root value={value} onValueChange={onSelect}>
-    <Select.Trigger className="inline-flex h-[35px] w-24 items-center justify-center gap-[5px] rounded bg-primary px-[15px] text-[13px] leading-none text-white shadow-[0_2px_10px] shadow-black/10 outline-none focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-primary">
+    <Select.Trigger className="mx-0.5 inline-flex h-[35px] w-24 items-center justify-center gap-[5px] rounded-md bg-primary px-[15px] text-[13px] leading-none text-white shadow-[0_2px_10px] shadow-black/10 outline-none focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-primary">
       <Select.Value />
       <Select.Icon className="text-white">
         <ChevronDownIcon />
       </Select.Icon>
     </Select.Trigger>
     <Select.Content
-      className="-ml-2 rounded-md bg-white shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)]"
+      className="-ml-1.5 w-24 rounded-md bg-white shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)]"
       position="popper"
     >
       <Select.Viewport>

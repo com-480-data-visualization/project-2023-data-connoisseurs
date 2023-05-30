@@ -8,9 +8,9 @@ import {
   VictoryLine,
   VictoryTheme,
 } from "victory";
-import { ToggleGroupClass, ToggleItemClass } from "../components/MapControls";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import "../components/DropdownMenu.css";
+import { ToggleGroupClass, ToggleItemClass } from "../components/Toggle";
 
 const data_per_year = [
   { country: 1, points: 1 },
