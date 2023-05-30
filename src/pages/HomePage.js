@@ -15,7 +15,7 @@ function Card({ title, text }) {
 export function HomePage() {
   const contents = [
     {
-      title: "Eurovision Song Contest",
+      title: "Song Contest",
       text: `The Eurovision Song Contest is an annual music competition that unites
         countries from Europe and beyond. Each participating country selects a
         representative or a group to perform an original song on a televised
@@ -32,8 +32,8 @@ export function HomePage() {
       text: `However, over the years, the contest has witnessed the emergence of voting blocs, where neighbouring countries or regions tend to support each other, sometimes leading to predictable voting patterns. While voting blocs are not officially recognised or encouraged, they have become part of the Eurovision lore, adding a unique element of intrigue and sometimes controversy to the competition`,
     },
     {
-      title: "Our Visualization",
-      text: `With our visualisation, voting across the years can be analysed and trends can be uncovered, including whether the voting blocs truly exist. Polls can also be explored to see which songs and countries are fan favourites.`,
+      title: "Our Visualizations",
+      text: `With our visualisations, voting across the years can be analysed and trends can be uncovered, including whether the voting blocs truly exist. Polls can also be explored to see which songs and countries are fan favourites.`,
     },
   ];
 
