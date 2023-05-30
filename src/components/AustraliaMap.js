@@ -1,37 +1,25 @@
 import * as React from "react";
 import { useCallback, useMemo, useRef } from "react";
 import Map, { Layer, Source } from "react-map-gl";
+import { EurovisionLayer, MaskLayer } from "./EuropeMap";
 
-export const EurovisionLayer = {
-  id: "eurovision-countries",
-  type: "fill",
-  "source-layer": "country_boundaries",
-  paint: {
-    "fill-color": "#4FD1C5",
-    "fill-outline-color": "#FFFFFF",
-  },
-};
-
-export const MaskLayer = {
-  id: "other-countries-mask",
-  beforeId: EurovisionLayer.id,
-  type: "fill",
-  "source-layer": "country_boundaries",
-  paint: {
-    "fill-color": "#E2E8F0",
-    "fill-outline-color": "#FFFFFF",
-  },
-};
-
-export function EuropeMap({ countries, handleClickCountry }) {
+export function AustraliaMap({ handleClickCountry }) {
   const mapRef = useRef(null);
 
+  const viewState = useMemo(
+    () => ({
+      longitude: 133.50854032552678,
+      latitude: -27.43116012040209,
+      zoom: 1.1603152413621571,
+    }),
+    []
+  );
   const eurovisionLayerProps = useMemo(
     () => ({
       ...EurovisionLayer,
-      filter: ["in", ["get", "iso_3166_1"], ["literal", countries]],
+      filter: ["in", ["get", "iso_3166_1"], ["literal", "AU"]],
     }),
-    [countries]
+    []
   );
 
   const handleClick = useCallback(({ point }) => {
@@ -44,11 +32,7 @@ export function EuropeMap({ countries, handleClickCountry }) {
   return (
     <Map
       ref={mapRef}
-      initialViewState={{
-        longitude: 44.79002198838046,
-        latitude: 55.193626207922364,
-        zoom: 2.727659403162694,
-      }}
+      {...viewState}
       mapStyle="mapbox://styles/mapbox/streets-v9"
       onClick={handleClick}
     >

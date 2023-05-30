@@ -1,13 +1,14 @@
 import * as React from "react";
 import { useCallback, useMemo, useState } from "react";
 import { MapControls } from "../components/MapControls";
-import { EuropeMap } from "../components/EuropeMap";
 import { CountryVotesDrawer } from "../components/CountryVotesDrawer";
 import countriesByYear from "../data/countries.json";
 import juryVotesIn from "../data/jury_votes_in.json";
 import juryVotesOut from "../data/jury_votes_out.json";
 import teleVotesIn from "../data/televotes_in.json";
 import teleVotesOut from "../data/televotes_out.json";
+import { AustraliaMap } from "../components/AustraliaMap";
+import { EuropeMap } from "../components/EuropeMap";
 
 const dscYears = Object.keys(countriesByYear).sort().reverse();
 
@@ -66,9 +67,9 @@ export function VotesPage() {
     else if (type === VoteType.TELE && direction === VoteDirection.OUT)
       dataset = teleVotesOut;
 
-    console.log(dataset[year][country.code].map(format));
+    console.log(dataset[year][country.code]?.map(format));
 
-    return dataset[year][country.code].map(format);
+    return dataset[year][country.code]?.map(format);
   }, [year, country, direction, type]);
 
   const handleToggleDrawer = useCallback(
@@ -98,7 +99,13 @@ export function VotesPage() {
         typeOptions={typeOptions}
         onSelectType={setType}
       />
-      <EuropeMap countries={countries} onClickCountry={handleClickCountry} />
+      <EuropeMap
+        countries={countries}
+        handleClickCountry={handleClickCountry}
+      />
+      <div className="absolute bottom-0 left-0 z-10 h-36 w-36 shadow">
+        <AustraliaMap handleClickCountry={handleClickCountry} />
+      </div>
       <CountryVotesDrawer
         data={votes}
         direction={direction}
