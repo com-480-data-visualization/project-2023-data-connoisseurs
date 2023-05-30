@@ -33,11 +33,9 @@ export function EuropeMap({ countries, onClickCountry }) {
   );
 
   const handleClickCountry = useCallback(({ point }) => {
-    console.log(mapRef.current);
     const features = mapRef.current?.queryRenderedFeatures(point, {
       layers: [eurovisionLayerProps.id],
     });
-    console.log(features);
     onClickCountry(features[0]?.properties);
   }, []);
 

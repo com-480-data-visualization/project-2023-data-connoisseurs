@@ -16,7 +16,7 @@ export const Dropdown = ({ options, value, onSelect }) => (
     >
       <Select.Viewport>
         {options.map(({ value, label }) => (
-          <MenuItem value={value} label={label} />
+          <MenuItem key={value} value={value} label={label} />
         ))}
       </Select.Viewport>
     </Select.Content>
@@ -26,7 +26,6 @@ export const Dropdown = ({ options, value, onSelect }) => (
 const MenuItem = ({ label, value }) => {
   return (
     <Select.Item
-      key={value}
       value={value}
       className="relative flex h-[25px] select-none items-center rounded-[3px] pl-[25px] pr-[35px] text-[13px] leading-none text-primary data-[disabled]:pointer-events-none data-[highlighted]:bg-primary data-[disabled]:text-mauve8 data-[highlighted]:text-primary data-[highlighted]:text-white data-[highlighted]:outline-none"
     >

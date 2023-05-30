@@ -16,7 +16,7 @@ export function Toggle({ options, value, onSelect }) {
       onValueChange={onSelect}
     >
       {options.map(({ value, label }) => (
-        <ToggleGroup.Item className={ToggleItemClass} value={value}>
+        <ToggleGroup.Item className={ToggleItemClass} key={value} value={value}>
           {label}
         </ToggleGroup.Item>
       ))}

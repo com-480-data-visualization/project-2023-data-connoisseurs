@@ -4,6 +4,10 @@ import { MapControls } from "../components/MapControls";
 import { EuropeMap } from "../components/EuropeMap";
 import { CountryVotesDrawer } from "../components/CountryVotesDrawer";
 import countriesByYear from "../data/countries.json";
+import juryVotesIn from "../data/jury_votes_in.json";
+import juryVotesOut from "../data/jury_votes_out.json";
+import teleVotesIn from "../data/televotes_in.json";
+import teleVotesOut from "../data/televotes_out.json";
 
 const dscYears = Object.keys(countriesByYear).sort().reverse();
 
@@ -22,7 +26,7 @@ export function VotesPage() {
   const [direction, setDirection] = React.useState(VoteDirection.IN);
   const [type, setType] = React.useState(VoteType.TELE);
 
-  const [country, setCountry] = useState("Germany");
+  const [country, setCountry] = useState({ name: "Switzerland", code: "CH" });
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const yearOptions = useMemo(
@@ -47,6 +51,25 @@ export function VotesPage() {
     () => countriesByYear[year].map(([code]) => code),
     [year]
   );
+  const votes = useMemo(() => {
+    const format = ([countryCode, points]) => ({
+      country: countryCode,
+      points: points,
+    });
+    let dataset = [];
+    if (type === VoteType.JURY && direction === VoteDirection.IN)
+      dataset = juryVotesIn;
+    else if (type === VoteType.JURY && direction === VoteDirection.OUT)
+      dataset = juryVotesOut;
+    else if (type === VoteType.TELE && direction === VoteDirection.IN)
+      dataset = teleVotesIn;
+    else if (type === VoteType.TELE && direction === VoteDirection.OUT)
+      dataset = teleVotesOut;
+
+    console.log(dataset[year][country.code].map(format));
+
+    return dataset[year][country.code].map(format);
+  }, [year, country, direction, type]);
 
   const handleToggleDrawer = useCallback(
     () => setIsDrawerOpen((isOpen) => !isOpen),
@@ -54,9 +77,12 @@ export function VotesPage() {
   );
   const handleClickCountry = useCallback((feature) => {
     if (!feature) return;
-    const { name_en: country } = feature;
+
+    console.log(feature);
+
+    const { name_en, iso_3166_1 } = feature;
     setIsDrawerOpen(true);
-    setCountry(country);
+    setCountry({ name: name_en, code: iso_3166_1 });
   }, []);
 
   return (
@@ -74,9 +100,10 @@ export function VotesPage() {
       />
       <EuropeMap countries={countries} onClickCountry={handleClickCountry} />
       <CountryVotesDrawer
+        data={votes}
         isOpen={isDrawerOpen}
         country={country}
-        onToggle={handleToggleDrawer}
+        handleToggle={handleToggleDrawer}
       />
     </main>
   );
