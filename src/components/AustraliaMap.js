@@ -8,17 +8,14 @@ export function AustraliaMap({ handleClickCountry }) {
 
   const viewState = useMemo(
     () => ({
-      longitude: 133.50854032552678,
-      latitude: -27.43116012040209,
-      zoom: 1.1603152413621571,
+      longitude: 133,
+      latitude: -31,
+      zoom: 1.2,
     }),
     []
   );
-  const eurovisionLayerProps = useMemo(
-    () => ({
-      ...EurovisionLayer,
-      filter: ["in", ["get", "iso_3166_1"], ["literal", "AU"]],
-    }),
+  const eurovisionLayerFilter = useMemo(
+    () => ["==", ["get", "iso_3166_1"], "AU"],
     []
   );
 
@@ -33,15 +30,16 @@ export function AustraliaMap({ handleClickCountry }) {
     <Map
       ref={mapRef}
       {...viewState}
-      mapStyle="mapbox://styles/mapbox/streets-v9"
+      mapStyle="mapbox://styles/mapbox/streets-v8"
       onClick={handleClick}
+      onMove={console.log}
     >
       <Source
         id="country-boundaries"
         type="vector"
         url="mapbox://mapbox.country-boundaries-v1"
       >
-        <Layer {...eurovisionLayerProps} />
+        <Layer {...EurovisionLayer} filter={eurovisionLayerFilter} />
         <Layer {...MaskLayer} />
       </Source>
     </Map>

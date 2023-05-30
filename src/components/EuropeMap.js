@@ -8,7 +8,7 @@ export const EurovisionLayer = {
   type: "fill",
   "source-layer": "country_boundaries",
   paint: {
-    "fill-color": "#4FD1C5",
+    "fill-color": "#0043FF",
     "fill-outline-color": "#FFFFFF",
   },
 };
@@ -58,8 +58,8 @@ export function EuropeMap({ countries, handleClickCountry }) {
     <Map
       ref={mapRef}
       initialViewState={{
-        longitude: 44.79002198838046,
-        latitude: 55.193626207922364,
+        longitude: 39.27018131127352,
+        latitude: 55.495431909574364,
         zoom: 2.727659403162694,
         minZoom: 2,
         maxZoom: 5,
