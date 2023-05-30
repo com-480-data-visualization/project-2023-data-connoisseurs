@@ -4,6 +4,7 @@ import Map, { Layer, Source } from "react-map-gl";
 
 export const EurovisionLayer = {
   id: "eurovision-countries",
+  beforeId: "country-label-sm",
   type: "fill",
   "source-layer": "country_boundaries",
   paint: {
@@ -13,7 +14,7 @@ export const EurovisionLayer = {
 };
 
 export const MaskLayer = {
-  id: "other-countries-mask",
+  id: "masked-countries",
   beforeId: EurovisionLayer.id,
   type: "fill",
   "source-layer": "country_boundaries",
@@ -26,13 +27,25 @@ export const MaskLayer = {
 export function EuropeMap({ countries, handleClickCountry }) {
   const mapRef = useRef(null);
 
-  const eurovisionLayerProps = useMemo(
-    () => ({
-      ...EurovisionLayer,
-      filter: ["in", ["get", "iso_3166_1"], ["literal", countries]],
-    }),
+  const eurovisionLayerFilter = useMemo(
+    () => ["in", ["get", "iso_3166_1"], ["literal", countries]],
     [countries]
   );
+
+  const handleLoad = useCallback(() => {
+    const map = mapRef.current?.getMap();
+    // bring country labels on top
+    map
+      .getStyle()
+      .layers.filter((layer) => layer["source-layer"] === "country_label")
+      .forEach((layer) =>
+        map.setFilter(layer.id, [
+          "all",
+          map.getFilter(layer.id),
+          ["in", "code", ...countries],
+        ])
+      );
+  }, [mapRef, countries]);
 
   const handleClick = useCallback(({ point }) => {
     const features = mapRef.current?.queryRenderedFeatures(point, {
@@ -48,8 +61,11 @@ export function EuropeMap({ countries, handleClickCountry }) {
         longitude: 44.79002198838046,
         latitude: 55.193626207922364,
         zoom: 2.727659403162694,
+        minZoom: 2,
+        maxZoom: 5,
       }}
-      mapStyle="mapbox://styles/mapbox/streets-v9"
+      mapStyle="mapbox://styles/mapbox/streets-v8"
+      onLoad={handleLoad}
       onClick={handleClick}
     >
       <Source
@@ -57,7 +73,7 @@ export function EuropeMap({ countries, handleClickCountry }) {
         type="vector"
         url="mapbox://mapbox.country-boundaries-v1"
       >
-        <Layer {...eurovisionLayerProps} />
+        <Layer {...EurovisionLayer} filter={eurovisionLayerFilter} />
         <Layer {...MaskLayer} />
       </Source>
     </Map>

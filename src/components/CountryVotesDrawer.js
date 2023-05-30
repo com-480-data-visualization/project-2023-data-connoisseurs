@@ -28,7 +28,7 @@ export function CountryVotesDrawer({
 
   const NoData = (
     <h5 className="text-left text-sm">
-      {`No ${type === VoteType.TELE ? "tele" : "jury"} votes were
+      {`No ${type === VoteType.TELE ? "tele" : "jury"} votes
 		${direction === VoteDirection.IN ? "received" : "cast"}`}
     </h5>
   );
@@ -94,7 +94,7 @@ export function CountryVotesDrawer({
         </svg>
       </button>
       <h1 className="text-left text-lg font-bold">{country.name}</h1>
-      {data ? NoData : BarChart}
+      {data ? BarChart : NoData}
     </aside>
   );
 }
