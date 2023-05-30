@@ -101,6 +101,8 @@ export function VotesPage() {
       <EuropeMap countries={countries} onClickCountry={handleClickCountry} />
       <CountryVotesDrawer
         data={votes}
+        direction={direction}
+        type={type}
         isOpen={isDrawerOpen}
         country={country}
         handleToggle={handleToggleDrawer}

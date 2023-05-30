@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import {VictoryAxis, VictoryBar, VictoryChart, VictoryTheme} from "victory";
+import {VoteDirection, VoteType} from "../pages/VotesPage";
 
 /**
  *
@@ -11,9 +12,17 @@ import {VictoryAxis, VictoryBar, VictoryChart, VictoryTheme} from "victory";
  * @returns {JSX.Element}
  * @constructor
  */
-export function CountryVotesDrawer({ data, isOpen, country, handleToggle }) {
+export function CountryVotesDrawer({
+  data,
+  direction,
+  type,
+  isOpen,
+  country,
+  handleToggle,
+}) {
   const DrawerClass =
-    "absolute right-0 top-0 z-10 h-full w-1/3 overflow-visible rounded-l-2xl bg-background p-4 shadow-lg transition-transform duration-500 ";
+    "absolute right-0 top-0 z-10 h-full w-1/3 overflow-visible rounded-l-2xl" +
+    " bg-background p-4 shadow-lg transition-transform duration-500";
 
   return (
     <aside className={DrawerClass + (isOpen ? "" : "translate-x-full")}>
@@ -42,31 +51,37 @@ export function CountryVotesDrawer({ data, isOpen, country, handleToggle }) {
           ></path>
         </svg>
       </button>
-      <h1 className="text-left">{country.name}</h1>
-      <VictoryChart theme={VictoryTheme.material} domainPadding={{ x: 5 }}>
-        <VictoryAxis
-          tickValues={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-          tickFormat={[
-            "UA",
-            "PL",
-            "BE",
-            "CZ",
-            "FR",
-            "FI",
-            "NL",
-            "IT",
-            "SE",
-            "GB",
-          ]}
-        />
-        <VictoryBar
-          horizontal
-          data={data}
-          x="country"
-          y="points"
-          labels={({ datum }) => datum.points}
-        />
-      </VictoryChart>
+      <h1 className="text-left text-lg font-bold">{country.name}</h1>
+      <div className="my-2">
+        <h5 className="text-left text-sm">{`${
+          direction === VoteDirection.IN ? "Received" : "Cast"
+        }
+        ${type === VoteType.TELE ? "tele" : "jury"} votes by countries:`}</h5>
+        <VictoryChart theme={VictoryTheme.material} domainPadding={{ x: 5 }}>
+          <VictoryAxis
+            tickValues={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+            tickFormat={[
+              "UA",
+              "PL",
+              "BE",
+              "CZ",
+              "FR",
+              "FI",
+              "NL",
+              "IT",
+              "SE",
+              "GB",
+            ]}
+          />
+          <VictoryBar
+            horizontal
+            data={data}
+            x="country"
+            y="points"
+            labels={({ datum }) => datum.points}
+          />
+        </VictoryChart>
+      </div>
     </aside>
   );
 }
