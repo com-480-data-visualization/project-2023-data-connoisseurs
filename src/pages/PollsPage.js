@@ -11,6 +11,11 @@ import {
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import "../components/DropdownMenu.css";
 import { ToggleGroupClass, ToggleItemClass } from "../components/Toggle";
+import { useCallback, useMemo, useState } from "react";
+import countriesByYear from "../data/countries.json";
+import eurovisionworldByYear from "../data/eurovisionworld_by_year.json";
+import ogaeByYear from "../data/ogae_by_year.json";
+import { Dropdown } from "../components/Dropdown";
 
 const data_per_year = [
   { country: 1, points: 1 },
@@ -25,15 +30,38 @@ const data_per_year = [
   { country: 10, points: 12 },
 ];
 
+const dscYears = Object.keys(countriesByYear).sort().reverse();
+
 export const PollSource = {
   Eurovisionworld: "Eurovisionworld",
   OGAE: "OGAE",
 };
 
 export function PollsPage() {
-  const [pollSource, setPollSource] = React.useState(
-    PollSource.Eurovisionworld
-  );
+    const [year, setYear] = useState(dscYears[0]); // last year as default
+    const [pollSource, setPollSource] = React.useState(
+        PollSource.Eurovisionworld
+    );
+
+    const yearOptions = useMemo(
+        () => dscYears.map((year) => ({ label: year, value: year })),
+          [dscYears]
+    );
+
+    const polls = useMemo( () => {
+        const format = ([countryCode, points]) => ({
+            country: countryCode,
+            points: points,
+        });
+        let dataset = [];
+        if (pollSource === PollSource.Eurovisionworld)
+            dataset = eurovisionworldByYear;
+        else if (pollSource === PollSource.OGAE)
+            dataset = ogaeByYear;
+
+        return dataset[year].map(format);
+    }, [year, pollSource]);
+
   return (
     <div className="polls-page">
       <h1>POLLS</h1>
@@ -54,43 +82,23 @@ export function PollsPage() {
         </ToggleGroup.Item>
       </ToggleGroup.Root>
 
-      <div className="dropdown">
-        <button className="dropbtn">Years</button>
-        <div className="dropdown-content">
-          <li>2016</li>
-          <li>2017</li>
-          <li>2018</li>
-          <li>2019</li>
-          <li>2021</li>
-        </div>
+      <div>
+          <Dropdown value={year} options={yearOptions} onChange={setYear} />
       </div>
 
       <div className="two-column-layout">
         <div className="left-column">
-          <VictoryChart theme={VictoryTheme.material} domainPadding={{ x: 5 }}>
-            <VictoryAxis
-              tickValues={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-              tickFormat={[
-                "UA",
-                "PL",
-                "BE",
-                "CZ",
-                "FR",
-                "FI",
-                "NL",
-                "IT",
-                "SE",
-                "GB",
-              ]}
-            />
-            <VictoryBar
-              horizontal
-              data={data_per_year}
-              x="country"
-              y="points"
-              labels={({ datum }) => datum.points}
-            />
-          </VictoryChart>
+            <div style={{ overflowX: "auto", maxWidth: "100%" }}>
+                <VictoryChart theme={VictoryTheme.material} height={500}>
+                    <VictoryBar
+                      horizontal
+                      data={polls.slice().reverse()}
+                      x="country"
+                      y="points"
+                      labels={({ datum }) => datum.points}
+                    />
+              </VictoryChart>
+            </div>
         </div>
 
         <div className="right-column">
