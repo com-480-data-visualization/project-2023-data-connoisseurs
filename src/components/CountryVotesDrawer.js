@@ -28,7 +28,7 @@ export function CountryVotesDrawer({
 
   const NoData = (
     <h5 className="text-left text-sm">
-      {`No ${type === VoteType.TELE ? "tele" : "jury"} votes were
+      {`No ${type === VoteType.TELE ? "tele" : "jury"} votes
 		${direction === VoteDirection.IN ? "received" : "cast"}`}
     </h5>
   );
