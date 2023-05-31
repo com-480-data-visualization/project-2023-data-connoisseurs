@@ -40,7 +40,7 @@ export function CountryVotesDrawer({
       }
 			${type === VoteType.TELE ? "tele" : "jury"} votes by countries:`}</h5>
 
-      <VictoryChart theme={VictoryTheme.material}>
+      <VictoryChart theme={VictoryTheme.material} height={500}>
         <VictoryBar
           horizontal
           data={data.slice().reverse()}
