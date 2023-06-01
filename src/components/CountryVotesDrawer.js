@@ -43,10 +43,12 @@ export function CountryVotesDrawer({
       <VictoryChart theme={VictoryTheme.material} height={500}>
         <VictoryBar
           horizontal
-          data={data.slice().reverse()}
+          data={data}
           x="country"
           y="points"
           labels={({ datum }) => datum.points}
+          sortKey="points"
+          sortOrder="ascending"
         />
       </VictoryChart>
     </div>
