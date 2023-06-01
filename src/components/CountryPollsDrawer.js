@@ -63,7 +63,7 @@ export function CountryPollsDrawer({
                 </svg>
             </button>
             <h1 className="text-left text-xl font-bold">{country}</h1>
-            {data ? lineChart : <h5 className="text-left text-sm">No data</h5>}
+            {data && data.length > 0 ? lineChart : <h5 className="text-left text-sm">No data</h5>}
         </aside>
     );
 }
