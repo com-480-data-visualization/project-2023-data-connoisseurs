@@ -67,10 +67,6 @@ export function VotesPage() {
     else if (type === VoteType.TELE && direction === VoteDirection.OUT)
       dataset = teleVotesOut;
 
-    console.log(dataset);
-    console.log(year);
-    console.log(direction);
-    console.log(type);
     console.log(dataset[year][country.code]?.map(format));
 
     return dataset[year][country.code]?.map(format);
