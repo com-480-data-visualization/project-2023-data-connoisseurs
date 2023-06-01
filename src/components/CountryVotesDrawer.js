@@ -1,6 +1,6 @@
 import * as React from "react";
 import {VoteDirection, VoteType} from "../pages/VotesPage";
-import {VictoryAxis, VictoryBar, VictoryChart, VictoryTheme} from "victory";
+import {VictoryAxis, VictoryBar, VictoryChart, VictoryContainer} from "victory";
 
 /**
  *
@@ -21,6 +21,7 @@ export function CountryVotesDrawer({
   country,
   handleToggle,
 }) {
+
   const DrawerClass =
     "absolute right-0 top-0 z-10 h-full w-1/3" +
     " overflow-visible rounded-l-2xl  bg-background p-4 shadow-lg" +
@@ -33,27 +34,75 @@ export function CountryVotesDrawer({
     </h5>
   );
 
-  const BarChart = (
-    <div className="my-2">
-      <h5 className="text-left text-sm">{`${
-        direction === VoteDirection.IN ? "Received" : "Cast"
-      }
-			${type === VoteType.TELE ? "tele" : "jury"} votes by countries:`}</h5>
-
-        <VictoryChart theme={VictoryTheme.material} height={data.length * 15}>
-            <VictoryAxis />
-            <VictoryBar
-                horizontal
-                data={data}
-                x="country"
-                y="points"
-                labels={({ datum }) => datum.points}
-                sortKey="points"
-                sortOrder="ascending"
-            />
-        </VictoryChart>
-    </div>
+  const smallBarChart = (
+      <VictoryChart>
+          <VictoryAxis
+              style={{
+                  tickLabels: {fontSize: 14, fill: "#000000"},
+              }}/>
+          <VictoryBar
+              horizontal
+              barRatio={0.5}
+              data={data}
+              x="country"
+              y="points"
+              labels={({ datum }) => datum.points}
+              sortKey="points"
+              sortOrder="ascending"
+              style={{
+                  data: {
+                      fill: "#0043FF",
+                  },
+                  labels: {
+                      fontSize: 14,
+                      fill: "#000000",
+                  }
+              }}
+              height={data? data.length * 15 : 300}
+          />
+      </VictoryChart>
   );
+
+  const bigBarChart = (
+      <VictoryChart height={data? data.length * 15 : 300}>
+          <VictoryAxis
+              style={{
+                  tickLabels: {fontSize: 14, fill: "#000000"},
+              }}/>
+          <VictoryBar
+              height={data? data.length * 15 : 300}
+              horizontal
+              barRatio={0.5}
+              data={data}
+              x="country"
+              y="points"
+              labels={({ datum }) => datum.points}
+              sortKey="points"
+              sortOrder="ascending"
+              style={{
+                  data: {
+                      fill: "#0043FF",
+                  },
+                  labels: {
+                      fontSize: 14,
+                      fill: "#000000",
+                  }
+              }}
+          />
+      </VictoryChart>
+  );
+
+    const BarChart = (
+        <div className="my-2">
+            <h5 className="text-left text-sm">{`${
+                direction === VoteDirection.IN ? "Received" : "Cast"
+            }
+        ${type === VoteType.TELE ? "tele" : "jury"} votes by countries:`}</h5>
+
+            {data && data.length > 24 ? bigBarChart : smallBarChart}
+        </div>
+    );
+
 
   return (
     <aside className={DrawerClass + (isOpen ? "" : " translate-x-full")}>
