@@ -51,6 +51,7 @@ export function PollsPage() {
         else if (pollSource === PollSource.OGAE)
             dataset = ogaeByYear;
 
+        console.log(dataset[year]);
         return dataset[year].map(format);
     }, [year, pollSource]);
 
@@ -65,7 +66,8 @@ export function PollsPage() {
         else if (pollSource === PollSource.OGAE)
             dataset = ogaeByCountry;
 
-        return dataset[country].map(format);
+        console.log(dataset[country]?.map(format));
+        return dataset[country]?.map(format);
     }, [country, pollSource]);
 
 
