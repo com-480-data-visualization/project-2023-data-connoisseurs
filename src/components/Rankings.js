@@ -23,8 +23,6 @@ export function Rankings({
                                     return [ {
                                         target: "data",
                                         mutation: (props) => {
-                                            console.log("click");
-                                            console.log(props.datum.country);
                                             handleClickCountry(props.datum.country);
                                         }
                                     }]
