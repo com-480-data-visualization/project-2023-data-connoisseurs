@@ -1,6 +1,6 @@
 import * as React from "react";
 import {VoteDirection, VoteType} from "../pages/VotesPage";
-import {VictoryAxis, VictoryBar, VictoryChart, VictoryContainer} from "victory";
+import {VictoryAxis, VictoryBar, VictoryChart} from "victory";
 
 /**
  *
@@ -132,7 +132,7 @@ export function CountryVotesDrawer({
         </svg>
       </button>
       <h1 className="text-left text-lg font-bold">{country.name}</h1>
-      {data ? BarChart : NoData}
+      {data && data.length > 0 ? BarChart : NoData}
     </aside>
   );
 }
