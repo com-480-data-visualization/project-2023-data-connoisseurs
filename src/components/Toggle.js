@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useCallback } from "react";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 
 export const ToggleGroupClass = "inline-flex shadow-sm text-left mx-0.5";
@@ -8,12 +9,17 @@ export const ToggleItemClass =
   " hover:text-primary focus:z-10 first:rounded-l-md last:rounded-r-md ";
 
 export function Toggle({ options, value, onSelect }) {
+  const handleSelect = useCallback(
+    (value) => value && onSelect(value),
+    [onSelect]
+  );
+
   return (
     <ToggleGroup.Root
       className={ToggleGroupClass}
       type="single"
       value={value}
-      onValueChange={onSelect}
+      onValueChange={handleSelect}
     >
       {options.map(({ value, label }) => (
         <ToggleGroup.Item className={ToggleItemClass} key={value} value={value}>

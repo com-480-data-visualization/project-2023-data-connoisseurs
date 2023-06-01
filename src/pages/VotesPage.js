@@ -13,19 +13,19 @@ import { EuropeMap } from "../components/EuropeMap";
 const dscYears = Object.keys(countriesByYear).sort().reverse();
 
 export const VoteDirection = {
-  IN: "votes-in",
-  OUT: "votes-out",
+  IN: "in",
+  OUT: "out",
 };
 
 export const VoteType = {
-  TELE: "votes-tele",
-  JURY: "votes-jury",
+  TELE: "tele",
+  JURY: "jury",
 };
 
 export function VotesPage() {
   const [year, setYear] = useState(dscYears[0]); // last year as default
-  const [direction, setDirection] = React.useState(VoteDirection.IN);
-  const [type, setType] = React.useState(VoteType.TELE);
+  const [direction, setDirection] = useState(VoteDirection.IN);
+  const [type, setType] = useState(VoteType.TELE);
 
   const [country, setCountry] = useState({ name: "Switzerland", code: "CH" });
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -57,7 +57,7 @@ export function VotesPage() {
       country: countryCode,
       points: points,
     });
-    let dataset = [];
+    let dataset = {};
     if (type === VoteType.JURY && direction === VoteDirection.IN)
       dataset = juryVotesIn;
     else if (type === VoteType.JURY && direction === VoteDirection.OUT)
@@ -67,6 +67,10 @@ export function VotesPage() {
     else if (type === VoteType.TELE && direction === VoteDirection.OUT)
       dataset = teleVotesOut;
 
+    console.log(dataset);
+    console.log(year);
+    console.log(direction);
+    console.log(type);
     console.log(dataset[year][country.code]?.map(format));
 
     return dataset[year][country.code]?.map(format);
