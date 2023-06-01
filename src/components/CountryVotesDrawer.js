@@ -93,13 +93,15 @@ export function CountryVotesDrawer({
   );
 
     const BarChart = (
-        <div className="my-2">
+        <div className="my-0 mt-0">
             <h5 className="text-left text-sm">{`${
                 direction === VoteDirection.IN ? "Received" : "Cast"
             }
         ${type === VoteType.TELE ? "tele" : "jury"} votes by countries:`}</h5>
 
-            {data && data.length > 24 ? bigBarChart : smallBarChart}
+            <div style={{ marginTop: 0, paddingTop: 0 }}>
+                {data && data.length > 24 ? bigBarChart : smallBarChart}
+            </div>
         </div>
     );
 
