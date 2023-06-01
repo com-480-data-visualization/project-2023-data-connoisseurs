@@ -16,8 +16,8 @@ export function CountryPollsDrawer({
         <div className="my-2">
             <VictoryChart theme={VictoryTheme.material}>
                 <VictoryAxis
-                    tickValues={[2016, 2017, 2018, 2019, 2021]}
-                    tickFormat={["2016", "2017", "2018", "2019", "2021"]}
+                    tickValues={[2016, 2017, 2018, 2019, 2021, 2022]}
+                    tickFormat={["2016", "2017", "2018", "2019", "2021", "2022"]}
                 />
                 <VictoryAxis dependentAxis tickFormat={(x) => `${x}`} />
                 <VictoryLine
@@ -25,15 +25,10 @@ export function CountryPollsDrawer({
                         data: { stroke: "#c43a31" },
                         parent: { border: "1px solid #ccc" },
                     }}
-                    domain={{ x: [2015, 2022], y: [1, 12] }}
-                    data={[
-                        { x: 2016, y: 4 },
-                        { x: 2017, y: 8 },
-                        { x: 2018, y: 6 },
-                        { x: 2019, y: 3 },
-                        { x: 2021, y: 10 },
-                    ]}
-                    labels={({ datum }) => datum.y}
+                    data={data}
+                    x="year"
+                    y="points"
+                    labels={({ datum }) => datum.points}
                     labelComponent={<VictoryLabel renderInPortal dy={-10} />}
                 />
             </VictoryChart>
