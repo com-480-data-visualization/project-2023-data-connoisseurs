@@ -1,16 +1,8 @@
 import {VictoryBar, VictoryChart, VictoryTheme} from "victory";
 import * as React from "react";
-import {useCallback} from "react";
 
 export function Rankings({
                              data, handleClickCountry,}) {
-
-    const handleClick = useCallback((event, barData) => {
-        const selectedDatum = barData.find((datum) => datum._x === event.datum._x);
-        if (selectedDatum) {
-            handleClickCountry(selectedDatum.country);
-        }
-    })
 
     return (
         <div style={{ overflowX: "auto", maxWidth: "100%" }}>
@@ -27,8 +19,17 @@ export function Rankings({
                         {
                             target: "data",
                             eventHandlers: {
-                                onClick: handleClick,
-                            },
+                                onClick: () => {
+                                    return [ {
+                                        target: "data",
+                                        mutation: (props) => {
+                                            console.log("click");
+                                            console.log(props.datum.country);
+                                            handleClickCountry(props.datum.country);
+                                        }
+                                    }]
+                                }
+                            }
                         },
                     ]}
                 />
