@@ -1,6 +1,6 @@
 import * as React from "react";
 import {VoteDirection, VoteType} from "../pages/VotesPage";
-import {VictoryBar, VictoryChart, VictoryTheme} from "victory";
+import {VictoryAxis, VictoryBar, VictoryChart, VictoryTheme} from "victory";
 
 /**
  *
@@ -40,17 +40,18 @@ export function CountryVotesDrawer({
       }
 			${type === VoteType.TELE ? "tele" : "jury"} votes by countries:`}</h5>
 
-      <VictoryChart theme={VictoryTheme.material} height={500}>
-        <VictoryBar
-          horizontal
-          data={data}
-          x="country"
-          y="points"
-          labels={({ datum }) => datum.points}
-          sortKey="points"
-          sortOrder="ascending"
-        />
-      </VictoryChart>
+        <VictoryChart theme={VictoryTheme.material} height={data.length * 15}>
+            <VictoryAxis />
+            <VictoryBar
+                horizontal
+                data={data}
+                x="country"
+                y="points"
+                labels={({ datum }) => datum.points}
+                sortKey="points"
+                sortOrder="ascending"
+            />
+        </VictoryChart>
     </div>
   );
 
