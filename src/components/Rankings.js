@@ -1,4 +1,4 @@
-import {VictoryBar, VictoryChart, VictoryTheme} from "victory";
+import {VictoryAxis, VictoryBar, VictoryChart} from "victory";
 import * as React from "react";
 
 export function Rankings({
@@ -6,7 +6,12 @@ export function Rankings({
 
     return (
         <div style={{ overflowX: "auto", maxWidth: "100%" }}>
-            <VictoryChart theme={VictoryTheme.material} height={500}>
+            <VictoryChart height={data? data.length * 10 : 300}>
+                <VictoryAxis
+                    style={{
+                        tickLabels: { fontSize: 9, fill: "#000000" },
+                    }}
+                />
                 <VictoryBar
                     horizontal
                     data={data.slice().reverse()}
@@ -15,6 +20,15 @@ export function Rankings({
                     labels={({ datum }) => datum.points}
                     sortKey="points"
                     sortOrder="ascending"
+                    style={{
+                        data: {
+                            fill: "#0043FF",
+                        },
+                        labels: {
+                            fontSize: 9,
+                            fill: "#000000",
+                        },
+                    }}
                     events={[
                         {
                             target: "data",
