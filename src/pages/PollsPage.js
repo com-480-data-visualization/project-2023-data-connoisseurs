@@ -25,7 +25,7 @@ export function PollsPage() {
         PollSource.Eurovisionworld
     );
 
-    const [country, setCountry] = useState("Switzerland");
+    const [country, setCountry] = useState({ name: "Switzerland", code: "CH" });
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
     const yearOptions = useMemo(
@@ -66,8 +66,8 @@ export function PollsPage() {
         else if (pollSource === PollSource.OGAE)
             dataset = ogaeByCountry;
 
-        console.log(dataset[country]?.map(format));
-        return dataset[country]?.map(format);
+        console.log("pollsCountry",country);
+        return dataset[country[0]]?.map(format);
     }, [country, pollSource]);
 
 
@@ -76,10 +76,13 @@ export function PollsPage() {
         []
     );
 
-    const handleClickCountry = useCallback((country) => {
+    const handleClickCountry = useCallback((countryCode) => {
         setIsDrawerOpen(true);
-        setCountry(country);
+        setCountry(countriesByYear[year].find(([code]) => code === countryCode));
+        console.log(country);
+        console.log(country.name);
     }, []);
+
 
   return (
       <main className="relative grow">
