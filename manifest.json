@@ -1,0 +1,10 @@
+{
+  "short_name": "Eurovision Graphs",
+  "name": "Eurovision Voting Graphs",
+  "icons": [
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
