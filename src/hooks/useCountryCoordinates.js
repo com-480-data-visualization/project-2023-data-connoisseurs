@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-export const useCountryCoordinates = (countryCodes) => {
+export const useCountryCoordinates = (countryNames) => {
   const [coordinates, setCoordinates] = useState(null);
 
   useEffect(() => {
-    if (!countryCodes) {
+    if (!countryNames) {
       setCoordinates(null);
       return;
     }
@@ -34,7 +34,7 @@ export const useCountryCoordinates = (countryCodes) => {
       // }
     };
 
-    Promise.all(countryCodes.map(fetchCoordinates)).then(
+    Promise.all(countryNames.map(fetchCoordinates)).then(
       (resolvedCoordinates) => {
         const filteredCoordinates = resolvedCoordinates.filter(
           (coord) => coord !== null
@@ -42,7 +42,7 @@ export const useCountryCoordinates = (countryCodes) => {
         setCoordinates(filteredCoordinates);
       }
     );
-  }, [countryCodes]);
+  }, [countryNames]);
 
   return coordinates;
 };

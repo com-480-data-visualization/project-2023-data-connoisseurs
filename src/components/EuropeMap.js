@@ -80,7 +80,10 @@ export function EuropeMap({
       type: "Feature",
       geometry: {
         type: "LineString",
-        coordinates: [start, end],
+        coordinates: [
+          [start.longitude, start.latitude],
+          [end.longitude, end.latitude],
+        ],
       },
     }));
     return {

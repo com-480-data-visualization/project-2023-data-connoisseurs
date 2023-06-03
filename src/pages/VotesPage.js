@@ -51,15 +51,18 @@ export function VotesPage() {
   const [country, setCountry] = useState({ name: "Switzerland", code: "CH" });
   const countryVotesData = useVotesData(year, country.code, direction, type);
 
-  const selectedCountryCode = useMemo(() => [country.code], [country]);
+  const selectedCountryName = useMemo(() => [country.name], [country]);
   const selectedCountryCoordinates =
-    useCountryCoordinates(selectedCountryCode)?.[0];
+    useCountryCoordinates(selectedCountryName)?.[0];
 
-  const connectedCountriesCodes = useMemo(() => {
-    return countryVotesData?.map(({ countryCode }) => countryCode);
-  }, [countryVotesData]);
+  const connectedCountriesNames = useMemo(() => {
+    return countryVotesData?.map(
+      ({ countryCode }) =>
+        eurovisionCountries?.find(({ code }) => code === countryCode)?.name
+    );
+  }, [countryVotesData, eurovisionCountries]);
   const connectedCountriesCoordinates = useCountryCoordinates(
-    connectedCountriesCodes
+    connectedCountriesNames
   );
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
