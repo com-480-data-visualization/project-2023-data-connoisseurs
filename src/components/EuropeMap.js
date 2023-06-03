@@ -2,7 +2,7 @@ import * as React from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Map, { Layer, Source } from "react-map-gl";
 
-export const EurovisionLayer = {
+export const EurovisionLayerProps = {
   id: "eurovision-countries",
   beforeId: "country-label-sm",
   type: "fill",
@@ -13,9 +13,9 @@ export const EurovisionLayer = {
   },
 };
 
-export const MaskLayer = {
+export const MaskLayerProps = {
   id: "masked-countries",
-  beforeId: EurovisionLayer.id,
+  beforeId: EurovisionLayerProps.id,
   type: "fill",
   "source-layer": "country_boundaries",
   paint: {
@@ -24,14 +24,29 @@ export const MaskLayer = {
   },
 };
 
-export function EuropeMap({ countries, handleClickCountry }) {
+export const ArrowsLayerProps = {
+  id: "arrows-layer",
+  type: "line",
+  source: "arrows",
+  layout: {},
+  paint: {
+    "line-color": "red",
+    "line-width": 2,
+  },
+};
+
+export function EuropeMap({
+  highlightCountries,
+  handleClickCountry,
+  arrowsCoordinates,
+}) {
   const mapRef = useRef();
   const [map, setMap] = useState(null);
   const [labelLayers, setLabelLayers] = useState([]);
 
   const eurovisionLayerFilter = useMemo(
-    () => ["in", ["get", "iso_3166_1"], ["literal", countries]],
-    [countries]
+    () => ["in", ["get", "iso_3166_1"], ["literal", highlightCountries]],
+    [highlightCountries]
   );
 
   const handleLoad = useCallback(() => setMap(mapRef.current?.getMap()), []);
@@ -48,18 +63,34 @@ export function EuropeMap({ countries, handleClickCountry }) {
   }, [map]);
 
   useEffect(() => {
+    if (!highlightCountries) return;
+
     // bring country labels on top
     labelLayers?.forEach(({ id, filter }) =>
-      map?.setFilter(id, ["all", filter, ["in", "code", ...countries]])
+      map?.setFilter(id, ["all", filter, ["in", "code", ...highlightCountries]])
     );
-  }, [labelLayers, countries]);
+  }, [labelLayers, highlightCountries]);
 
   const handleClick = useCallback(({ point }) => {
     const features = mapRef.current?.queryRenderedFeatures(point, {
-      layers: [EurovisionLayer.id],
+      layers: [EurovisionLayerProps.id],
     });
     handleClickCountry(features[0]?.properties);
   }, []);
+
+  const arrowsFeaturesData = useMemo(() => {
+    const arrowsFeatures = arrowsCoordinates?.map(([start, end]) => ({
+      type: "Feature",
+      geometry: {
+        type: "LineString",
+        coordinates: [start, end],
+      },
+    }));
+    return {
+      type: "FeatureCollection",
+      features: arrowsFeatures,
+    };
+  }, [arrowsCoordinates]);
 
   return (
     <Map
@@ -80,9 +111,14 @@ export function EuropeMap({ countries, handleClickCountry }) {
         type="vector"
         url="mapbox://mapbox.country-boundaries-v1"
       >
-        <Layer {...EurovisionLayer} filter={eurovisionLayerFilter} />
-        <Layer {...MaskLayer} />
+        <Layer {...EurovisionLayerProps} filter={eurovisionLayerFilter} />
+        <Layer {...MaskLayerProps} />
       </Source>
+      {arrowsCoordinates && (
+        <Source id="arrows" type="geojson" data={arrowsFeaturesData}>
+          <Layer {...ArrowsLayerProps} />
+        </Source>
+      )}
     </Map>
   );
 }

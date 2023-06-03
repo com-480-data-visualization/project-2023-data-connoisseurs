@@ -1,10 +1,10 @@
 import * as React from "react";
-import {VoteDirection, VoteType} from "../pages/VotesPage";
+import {Direction, Type} from "../pages/VotesPage";
 import {VictoryBar, VictoryChart, VictoryTheme} from "victory";
 
 /**
  *
- * @param data: [{country: "CH", points: 6}, ...]
+ * @param data: [{countryCode: "CH", points: 6}, ...]
  * @param direction
  * @param type
  * @param isOpen
@@ -26,25 +26,24 @@ export function CountryVotesDrawer({
     " overflow-visible rounded-l-2xl  bg-background p-4 shadow-lg" +
     " transition-transform duration-500";
 
-  const NoData = (
+  const NoData = () => (
     <h5 className="text-left text-sm">
-      {`No ${type === VoteType.TELE ? "tele" : "jury"} votes
-		${direction === VoteDirection.IN ? "received" : "cast"}`}
+      {`No ${type === Type.TELE ? "tele" : "jury"} votes
+		${direction === Direction.IN ? "received" : "cast"}`}
     </h5>
   );
 
-  const BarChart = (
+  const BarChart = () => (
     <div className="my-2">
-      <h5 className="text-left text-sm">{`${
-        direction === VoteDirection.IN ? "Received" : "Cast"
-      }
-			${type === VoteType.TELE ? "tele" : "jury"} votes by countries:`}</h5>
-
+      <h5 className="text-left text-sm">
+        {`${direction === Direction.IN ? "Received" : "Cast"}
+			${type === Type.TELE ? "tele" : "jury"} votes by countries:`}
+      </h5>
       <VictoryChart theme={VictoryTheme.material}>
         <VictoryBar
           horizontal
           data={data.slice().reverse()}
-          x="country"
+          x="countryCode" // todo show country name
           y="points"
           labels={({ datum }) => datum.points}
         />
@@ -80,7 +79,7 @@ export function CountryVotesDrawer({
         </svg>
       </button>
       <h1 className="text-left text-lg font-bold">{country.name}</h1>
-      {data ? BarChart : NoData}
+      {data ? BarChart() : NoData()}
     </aside>
   );
 }

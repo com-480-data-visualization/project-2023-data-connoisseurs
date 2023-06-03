@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useCallback, useMemo, useRef } from "react";
 import Map, { Layer, Source } from "react-map-gl";
-import { EurovisionLayer, MaskLayer } from "./EuropeMap";
+import { EurovisionLayerProps, MaskLayerProps } from "./EuropeMap";
 
 export function AustraliaMap({ handleClickCountry }) {
   const mapRef = useRef(null);
@@ -21,7 +21,7 @@ export function AustraliaMap({ handleClickCountry }) {
 
   const handleClick = useCallback(({ point }) => {
     const features = mapRef.current?.queryRenderedFeatures(point, {
-      layers: [EurovisionLayer.id],
+      layers: [EurovisionLayerProps.id],
     });
     handleClickCountry(features[0]?.properties);
   }, []);
@@ -39,8 +39,8 @@ export function AustraliaMap({ handleClickCountry }) {
         type="vector"
         url="mapbox://mapbox.country-boundaries-v1"
       >
-        <Layer {...EurovisionLayer} filter={eurovisionLayerFilter} />
-        <Layer {...MaskLayer} />
+        <Layer {...EurovisionLayerProps} filter={eurovisionLayerFilter} />
+        <Layer {...MaskLayerProps} />
       </Source>
     </Map>
   );

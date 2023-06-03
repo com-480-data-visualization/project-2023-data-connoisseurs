@@ -1,76 +1,69 @@
 import * as React from "react";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { MapControls } from "../components/MapControls";
 import { CountryVotesDrawer } from "../components/CountryVotesDrawer";
-import countriesByYear from "../data/countries.json";
-import juryVotesIn from "../data/jury_votes_in.json";
-import juryVotesOut from "../data/jury_votes_out.json";
-import teleVotesIn from "../data/televotes_in.json";
-import teleVotesOut from "../data/televotes_out.json";
 import { AustraliaMap } from "../components/AustraliaMap";
 import { EuropeMap } from "../components/EuropeMap";
+import { useYears } from "../hooks/useYears";
+import { useCountries } from "../hooks/useCountries";
+import { useVotesData } from "../hooks/useVotesData";
+import { useCountryCoordinates } from "../hooks/useCountryCoordinates";
 
-const dscYears = Object.keys(countriesByYear).sort().reverse();
-
-export const VoteDirection = {
+export const Direction = {
   IN: "in",
   OUT: "out",
 };
 
-export const VoteType = {
+export const Type = {
   TELE: "tele",
   JURY: "jury",
 };
 
+export const DirectionOptions = [
+  { value: Direction.IN, label: "Votes In" },
+  { value: Direction.OUT, label: "Votes Out" },
+];
+
+export const TypeOptions = [
+  { value: Type.TELE, label: "Tele" },
+  { value: Type.JURY, label: "Jury" },
+];
+
 export function VotesPage() {
-  const [year, setYear] = useState(dscYears[0]); // last year as default
-  const [direction, setDirection] = useState(VoteDirection.IN);
-  const [type, setType] = useState(VoteType.TELE);
+  // todo replace with useReducer() & dispatch to handle form data
+  const years = useYears(true);
+  const [year, setYear] = useState();
+
+  // last year as default
+  useEffect(() => {
+    if (!years) return;
+
+    year || setYear(years[0]);
+  }, [years]);
+
+  const eurovisionCountries = useCountries(year);
+  const eurovisionCountryCodes = useMemo(
+    () => eurovisionCountries?.map(({ code }) => code),
+    [eurovisionCountries]
+  );
+
+  const [direction, setDirection] = useState(Direction.IN);
+  const [type, setType] = useState(Type.TELE);
 
   const [country, setCountry] = useState({ name: "Switzerland", code: "CH" });
+  const countryVotesData = useVotesData(year, country.code, direction, type);
+
+  const countryCoordinates = useCountryCoordinates([country.code]);
+  const connectedCountriesCoordinates = useCountryCoordinates(
+    countryVotesData?.map(({ countryCode }) => countryCode)
+  );
+
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const yearOptions = useMemo(
-    () => dscYears.map((year) => ({ label: year, value: year })),
-    [dscYears]
+    () => (years ? years.map((year) => ({ label: year, value: year })) : []),
+    [years]
   );
-  const directionOptions = useMemo(
-    () => [
-      { value: VoteDirection.IN, label: "Votes In" },
-      { value: VoteDirection.OUT, label: "Votes Out" },
-    ],
-    []
-  );
-  const typeOptions = useMemo(
-    () => [
-      { value: VoteType.TELE, label: "Tele" },
-      { value: VoteType.JURY, label: "Jury" },
-    ],
-    []
-  );
-  const countries = useMemo(
-    () => countriesByYear[year].map(([code]) => code),
-    [year]
-  );
-  const votes = useMemo(() => {
-    const format = ([countryCode, points]) => ({
-      country: countryCode,
-      points: points,
-    });
-    let dataset = {};
-    if (type === VoteType.JURY && direction === VoteDirection.IN)
-      dataset = juryVotesIn;
-    else if (type === VoteType.JURY && direction === VoteDirection.OUT)
-      dataset = juryVotesOut;
-    else if (type === VoteType.TELE && direction === VoteDirection.IN)
-      dataset = teleVotesIn;
-    else if (type === VoteType.TELE && direction === VoteDirection.OUT)
-      dataset = teleVotesOut;
-
-    console.log(dataset[year][country.code]?.map(format));
-
-    return dataset[year][country.code]?.map(format);
-  }, [year, country, direction, type]);
 
   const handleToggleDrawer = useCallback(
     () => setIsDrawerOpen((isOpen) => !isOpen),
@@ -86,6 +79,20 @@ export function VotesPage() {
     setCountry({ name: name_en, code: iso_3166_1 });
   }, []);
 
+  const arrowsCoordinates = useMemo(() => {
+    if (direction === Direction.OUT) {
+      return connectedCountriesCoordinates?.map((coord) => [
+        countryCoordinates,
+        coord,
+      ]);
+    } else if (direction === Direction.IN) {
+      return connectedCountriesCoordinates?.map((coord) => [
+        coord,
+        countryCoordinates,
+      ]);
+    } else return null;
+  }, [countryCoordinates, connectedCountriesCoordinates]);
+
   return (
     <main className="relative grow">
       <MapControls
@@ -93,21 +100,22 @@ export function VotesPage() {
         yearOptions={yearOptions}
         onSelectYear={setYear}
         direction={direction}
-        directionOptions={directionOptions}
+        directionOptions={DirectionOptions}
         onSelectDirection={setDirection}
         type={type}
-        typeOptions={typeOptions}
+        typeOptions={TypeOptions}
         onSelectType={setType}
       />
       <EuropeMap
-        countries={countries}
+        highlightCountries={eurovisionCountryCodes}
         handleClickCountry={handleClickCountry}
+        arrowsCoordinates={arrowsCoordinates}
       />
       <div className="absolute bottom-0 left-0 z-10 h-36 w-36 shadow">
         <AustraliaMap handleClickCountry={handleClickCountry} />
       </div>
       <CountryVotesDrawer
-        data={votes}
+        data={countryVotesData}
         direction={direction}
         type={type}
         isOpen={isDrawerOpen}
