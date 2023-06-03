@@ -3,7 +3,10 @@ import * as React from "react";
 import {PollSource} from "../pages/PollsPage";
 
 export function Rankings({
-                             data, pollSource, handleClickCountry,}) {
+                             data,
+                             countries,
+                             pollSource,
+                             handleClickCountry,}) {
     const textDisplay = (
         <h5 style={{marginTop: "40px"}}>
             {`${pollSource === PollSource.Eurovisionworld ? "Eurovisionworld rankings: shows number of votes received by each country" : 
@@ -32,7 +35,7 @@ export function Rankings({
                 <VictoryBar
                     horizontal
                     data={data.slice().reverse()}
-                    x="country"
+                    x={(datum) => `${countries.find(country => country[0] === datum.country)[1]}`}
                     y="points"
                     labels={({ datum }) => datum.points}
                     sortKey="points"
