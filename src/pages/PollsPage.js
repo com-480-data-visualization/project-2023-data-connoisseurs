@@ -96,6 +96,7 @@ export function PollsPage() {
           />
           <Rankings
               data={pollsYear}
+              pollSource={pollSource}
               handleClickCountry={handleClickCountry}
           />
           <CountryPollsDrawer
