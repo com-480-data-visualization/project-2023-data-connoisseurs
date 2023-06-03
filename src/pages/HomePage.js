@@ -49,7 +49,7 @@ export function HomePage() {
       </div>
       <div className="flex flex-row space-x-2">
         {contents.map(({ title, text }) => (
-          <Card title={title} text={text} />
+          <Card key={title} title={title} text={text} />
         ))}
       </div>
     </div>

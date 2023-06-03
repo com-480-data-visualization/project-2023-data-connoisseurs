@@ -1,13 +1,13 @@
 import * as React from "react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { MapControls } from "../components/MapControls";
-import { CountryVotesDrawer } from "../components/CountryVotesDrawer";
-import { AustraliaMap } from "../components/AustraliaMap";
-import { EuropeMap } from "../components/EuropeMap";
 import { useYears } from "../hooks/useYears";
 import { useCountries } from "../hooks/useCountries";
 import { useVotesData } from "../hooks/useVotesData";
 import { useCountryCoordinates } from "../hooks/useCountryCoordinates";
+import { EuropeMap } from "../components/EuropeMap";
+import { AustraliaMap } from "../components/AustraliaMap";
+import { CountryVotesDrawer } from "../components/CountryVotesDrawer";
 
 export const Direction = {
   IN: "in",
@@ -31,21 +31,19 @@ export const TypeOptions = [
 
 export function VotesPage() {
   // todo replace with useReducer() & dispatch to handle form data
-  const years = useYears(true);
+  const years = useYears();
   const [year, setYear] = useState();
 
   // last year as default
   useEffect(() => {
     if (!years) return;
-
     year || setYear(years[0]);
   }, [years]);
 
   const eurovisionCountries = useCountries(year);
-  const eurovisionCountryCodes = useMemo(
-    () => eurovisionCountries?.map(({ code }) => code),
-    [eurovisionCountries]
-  );
+  const eurovisionCountryCodes = useMemo(() => {
+    return eurovisionCountries?.map(({ code }) => code);
+  }, [eurovisionCountries]);
 
   const [direction, setDirection] = useState(Direction.IN);
   const [type, setType] = useState(Type.TELE);
@@ -53,9 +51,15 @@ export function VotesPage() {
   const [country, setCountry] = useState({ name: "Switzerland", code: "CH" });
   const countryVotesData = useVotesData(year, country.code, direction, type);
 
-  const countryCoordinates = useCountryCoordinates([country.code]);
+  const selectedCountryCode = useMemo(() => [country.code], [country]);
+  const selectedCountryCoordinates =
+    useCountryCoordinates(selectedCountryCode)?.[0];
+
+  const connectedCountriesCodes = useMemo(() => {
+    return countryVotesData?.map(({ countryCode }) => countryCode);
+  }, [countryVotesData]);
   const connectedCountriesCoordinates = useCountryCoordinates(
-    countryVotesData?.map(({ countryCode }) => countryCode)
+    connectedCountriesCodes
   );
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -82,16 +86,16 @@ export function VotesPage() {
   const arrowsCoordinates = useMemo(() => {
     if (direction === Direction.OUT) {
       return connectedCountriesCoordinates?.map((coord) => [
-        countryCoordinates,
+        selectedCountryCoordinates,
         coord,
       ]);
     } else if (direction === Direction.IN) {
       return connectedCountriesCoordinates?.map((coord) => [
         coord,
-        countryCoordinates,
+        selectedCountryCoordinates,
       ]);
     } else return null;
-  }, [countryCoordinates, connectedCountriesCoordinates]);
+  }, [selectedCountryCoordinates, connectedCountriesCoordinates]);
 
   return (
     <main className="relative grow">

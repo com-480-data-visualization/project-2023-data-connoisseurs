@@ -9,7 +9,6 @@ export const useCountries = (year) => {
       setCountries([]);
       return;
     }
-
     const countriesOfYear = countriesByYear[year].map(([code, name]) => ({
       code,
       name,

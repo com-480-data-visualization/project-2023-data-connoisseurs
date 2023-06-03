@@ -36,7 +36,7 @@ export const ArrowsLayerProps = {
 };
 
 export function EuropeMap({
-  highlightCountries,
+  highlightCountries = [],
   handleClickCountry,
   arrowsCoordinates,
 }) {
@@ -53,7 +53,6 @@ export function EuropeMap({
 
   useEffect(() => {
     if (!map) return;
-
     setLabelLayers(
       map
         ?.getStyle()
@@ -63,8 +62,6 @@ export function EuropeMap({
   }, [map]);
 
   useEffect(() => {
-    if (!highlightCountries) return;
-
     // bring country labels on top
     labelLayers?.forEach(({ id, filter }) =>
       map?.setFilter(id, ["all", filter, ["in", "code", ...highlightCountries]])
