@@ -133,7 +133,7 @@ export function CountryVotesDrawer({
           ></path>
         </svg>
       </button>
-      <h1 className="text-left text-lg font-bold">{country.name}</h1>
+      <h1 className="text-left text-lg font-bold">{country}</h1>
       {data && data.length > 0 ? BarChart : NoData}
     </aside>
   );

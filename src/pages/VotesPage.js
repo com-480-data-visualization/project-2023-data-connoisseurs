@@ -111,7 +111,7 @@ export function VotesPage() {
         direction={direction}
         type={type}
         isOpen={isDrawerOpen}
-        country={country}
+        country={country.name}
         handleToggle={handleToggleDrawer}
       />
     </main>
