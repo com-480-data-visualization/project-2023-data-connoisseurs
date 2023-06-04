@@ -30,7 +30,7 @@ export const ArrowsLayerProps = {
   source: "arrows",
   layout: {},
   paint: {
-    "line-color": "red",
+    "line-color": "#FF0087",
     "line-width": 2,
   },
 };
