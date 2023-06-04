@@ -26,7 +26,7 @@ to learn more about the problems behind the current Eurovision voting system and
 discover some voting patterns yourself!
 
 Otherwise, if you are in a hurry, feel free to watch our
-screencast [here](https://youtube.com/) where we quickly go over our website.
+screencast [here](https://youtu.be/ei0vqu_CyJ8) where we quickly go over our website.
 
 Finally, if you would look to learn more about the creative reasoning and design
 of our website, we invite you to take a look at our process
@@ -254,7 +254,7 @@ Website: https://com-480-data-visualization.github.io/project-2023-data-connoiss
 Process
 Book: https://github.com/com-480-data-visualization/project-2023-data-connoisseurs/blob/master/process_book.pdf
 
-Screencast:
+Screencast: https://youtu.be/ei0vqu_CyJ8
 
 Technical Setup: `/src/README.md`
 
