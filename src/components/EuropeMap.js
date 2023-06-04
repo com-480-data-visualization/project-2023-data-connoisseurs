@@ -106,6 +106,7 @@ export function EuropeMap({
         maxZoom: 5,
       }}
       mapStyle="mapbox://styles/mapbox/streets-v8"
+      reuseMaps
       onLoad={handleLoad}
       onClick={handleClick}
     >

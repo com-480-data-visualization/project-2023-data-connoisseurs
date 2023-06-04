@@ -34,6 +34,7 @@ export function AustraliaMap({ handleClickCountry }) {
       ref={mapRef}
       {...viewState}
       mapStyle="mapbox://styles/mapbox/streets-v8"
+      reuseMaps
       onClick={handleClick}
       onMove={console.log}
     >
