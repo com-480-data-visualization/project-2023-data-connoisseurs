@@ -38,11 +38,19 @@
       "react-app/jest"
     ]
   },
+  "babel": {
+    "presets": ["@babel/preset-env", "@babel/preset-react"],
+    "plugins": ["@babel/plugin-transform-runtime"]
+  },
   "browserslist": {
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
+      "not op_mini all",
+      "not safari < 10",
+      "not chrome < 51",
+      "not android < 5",
+      "not ie < 12"
     ],
     "development": [
       "last 1 chrome version",
@@ -51,6 +59,9 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.22.4",
+    "@babel/preset-env": "^7.22.4",
+    "@babel/preset-react": "^7.22.3",
     "gh-pages": "^5.0.0",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.2.8"

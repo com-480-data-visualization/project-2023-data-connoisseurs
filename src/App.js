@@ -3,7 +3,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { NavigationBar } from "./components/NavigationBar";
 import { VotesPage } from "./pages/VotesPage";
 import {
-  createBrowserRouter,
+  createHashRouter,
   Outlet,
   RouterProvider,
   useRouteError,
@@ -14,7 +14,7 @@ import { HomePage } from "./pages/HomePage";
 export const Path = { Votes: "/votes", Polls: "/polls" };
 
 function App() {
-  const router = createBrowserRouter([
+  const router = createHashRouter([
     {
       path: "/",
       element: (

@@ -28,13 +28,13 @@ export function NavigationBar() {
           <NavigationMenu.Item>
             <NavigationMenu.Link
               className={linkClass(Path.Votes)}
-              href={Path.Votes}
+              href={"#" + Path.Votes}
             >
               Votes
             </NavigationMenu.Link>
             <NavigationMenu.Link
               className={linkClass(Path.Polls)}
-              href={Path.Polls}
+              href={"#" + Path.Polls}
             >
               Polls
             </NavigationMenu.Link>
