@@ -15,7 +15,7 @@ export function NavigationBar() {
 
   return (
     <header className="z-40 flex flex-row justify-between px-8 py-4 shadow-md">
-      <a className="flex flex-row space-x-1" href="/">
+      <a className="flex flex-row space-x-1" href="#/">
         <img
           className="h-5 w-5 fill-black dark:fill-white"
           src={Logo}
