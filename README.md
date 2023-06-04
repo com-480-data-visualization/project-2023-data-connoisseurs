@@ -8,6 +8,18 @@
 
 [Milestone 1](#milestone-1) • [Milestone 2](#milestone-2) • [Milestone 3](#milestone-3)
 
+Welcome to our COM-480 Data Visualization Project!
+
+The aim of this project is to visualise the voting in the [Eurovision Song Contest](https://en.wikipedia.org/wiki/Eurovision_Song_Contest).
+The voting process in Eurovison is very contentious, with the fan favourite often not ending up as the winner.
+We hope that our website will make it easier for people interested in Eurovision to explore the voting and fan polls and potentially discover hidden voting patterns.
+
+Visit our website [here](https://com-480-data-visualization.github.io/project-2023-data-connoisseurs/) to learn more about the problems behind the current Eurovision voting system and discover some voting patterns yourself!
+
+Otherwise, if you are in a hurry, feel free to watch our screencast [here](https://youtube.com/) where we quickly go over our website.
+
+Finally, if you would look to learn more about the creative reasoning and design of our website, we invite you to take a look at our process book [here](https://github.com/com-480-data-visualization/project-2023-data-connoisseurs/blob/master/process_book.pdf). Additionally, you can read the sections [Milestone 1](#milestone-1) and [Milestone 2](#milestone-2) to learn more.
+
 ## Milestone 1 (7th April, 5pm)
 
 **10% of the final grade**
