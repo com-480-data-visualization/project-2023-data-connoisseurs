@@ -1,10 +1,6 @@
 import * as React from "react";
-import { Direction, Type } from "../pages/VotesPage";
-import { VictoryBar, VictoryChart } from "victory";
-
-function VictoryAxis(props) {
-  return null;
-}
+import {Direction, Type} from "../pages/VotesPage";
+import {VictoryAxis, VictoryBar, VictoryChart} from "victory";
 
 /**
  *
@@ -47,7 +43,11 @@ export function CountryVotesDrawer({
         horizontal
         barRatio={0.5}
         data={data}
-        x={(datum) => `${countries.find(country => country.code === datum.countryCode).name}`}
+        x={(datum) =>
+          `${
+            countries.find((country) => country.code === datum.countryCode).name
+          }`
+        }
         y="points"
         labels={({ datum }) => datum.points}
         sortKey="points"
@@ -67,7 +67,10 @@ export function CountryVotesDrawer({
   );
 
   const bigBarChart = () => (
-    <VictoryChart height={data ? data.length * 15 : 300} padding={{ left: 150, right: 50, top: 20, bottom: 40 }}>
+    <VictoryChart
+      height={data ? data.length * 15 : 300}
+      padding={{ left: 150, right: 50, top: 20, bottom: 40 }}
+    >
       <VictoryAxis
         style={{
           tickLabels: { fontSize: 14, fill: "#000000" },
@@ -78,7 +81,11 @@ export function CountryVotesDrawer({
         horizontal
         barRatio={0.5}
         data={data}
-        x={(datum) => `${countries.find(country => country.code === datum.countryCode).name}`}
+        x={(datum) =>
+          `${
+            countries.find((country) => country.code === datum.countryCode).name
+          }`
+        }
         y="points"
         labels={({ datum }) => datum.points}
         sortKey="points"
@@ -103,7 +110,7 @@ export function CountryVotesDrawer({
       }
         ${type === Type.TELE ? "tele" : "jury"} votes by countries:`}</h5>
 
-      <div style={{ marginTop: 0, paddingTop: 0}}>
+      <div style={{ marginTop: 0, paddingTop: 0 }}>
         {data && data.length > 24 ? bigBarChart() : smallBarChart()}
       </div>
     </div>
