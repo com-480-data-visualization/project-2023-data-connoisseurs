@@ -14,6 +14,7 @@ function VictoryAxis(props) {
  * @param isOpen
  * @param country: {code: "CH", name: "Switzerland"}
  * @param handleToggle
+ * @param countries: [{code: "CH", name: "Switzerland"}, ...]
  * @returns {JSX.Element}
  * @constructor
  */
@@ -24,6 +25,7 @@ export function CountryVotesDrawer({
   isOpen,
   country,
   handleToggle,
+  countries,
 }) {
   const DrawerClass = `absolute right-0 top-0 z-10 h-full w-1/3 rounded-l-2xl bg-background p-4 shadow-lg transition-transform duration-500`;
 
@@ -45,7 +47,7 @@ export function CountryVotesDrawer({
         horizontal
         barRatio={0.5}
         data={data}
-        x="countryCode"
+        x={(datum) => `${countries.find(country => country.code === datum.countryCode).name}`}
         y="points"
         labels={({ datum }) => datum.points}
         sortKey="points"
@@ -76,7 +78,7 @@ export function CountryVotesDrawer({
         horizontal
         barRatio={0.5}
         data={data}
-        x="countryCode"
+        x={(datum) => `${countries.find(country => country.code === datum.countryCode).name}`}
         y="points"
         labels={({ datum }) => datum.points}
         sortKey="points"
@@ -101,8 +103,7 @@ export function CountryVotesDrawer({
       }
         ${type === Type.TELE ? "tele" : "jury"} votes by countries:`}</h5>
 
-      <div style={{ marginTop: 0, paddingTop: 0 }}>
-          {console.log(data)}
+      <div style={{ marginTop: 0, paddingTop: 0}}>
         {data && data.length > 24 ? bigBarChart() : smallBarChart()}
       </div>
     </div>

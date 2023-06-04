@@ -128,6 +128,7 @@ export function VotesPage() {
         isOpen={isDrawerOpen}
         country={country}
         handleToggle={handleToggleDrawer}
+        countries={eurovisionCountries}
       />
     </main>
   );
