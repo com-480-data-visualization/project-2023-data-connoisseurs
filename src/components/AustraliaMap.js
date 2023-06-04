@@ -19,12 +19,15 @@ export function AustraliaMap({ handleClickCountry }) {
     []
   );
 
-  const handleClick = useCallback(({ point }) => {
-    const features = mapRef.current?.queryRenderedFeatures(point, {
-      layers: [EurovisionLayerProps.id],
-    });
-    handleClickCountry(features[0]?.properties);
-  }, []);
+  const handleClick = useCallback(
+    ({ point }) => {
+      const features = mapRef.current?.queryRenderedFeatures(point, {
+        layers: [EurovisionLayerProps.id],
+      });
+      handleClickCountry(features[0]?.properties);
+    },
+    [handleClickCountry]
+  );
 
   return (
     <Map

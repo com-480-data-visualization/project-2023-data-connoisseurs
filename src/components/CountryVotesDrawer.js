@@ -12,7 +12,7 @@ function VictoryAxis(props) {
  * @param direction
  * @param type
  * @param isOpen
- * @param country
+ * @param country: {code: "CH", name: "Switzerland"}
  * @param handleToggle
  * @returns {JSX.Element}
  * @constructor

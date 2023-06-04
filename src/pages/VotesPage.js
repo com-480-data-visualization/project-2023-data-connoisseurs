@@ -38,7 +38,7 @@ export function VotesPage() {
   useEffect(() => {
     if (!years) return;
     year || setYear(years[0]);
-  }, [years]);
+  }, [years, year]);
 
   const eurovisionCountries = useCountries(year);
   const eurovisionCountryCodes = useMemo(() => {
@@ -98,7 +98,7 @@ export function VotesPage() {
         selectedCountryCoordinates,
       ]);
     } else return null;
-  }, [selectedCountryCoordinates, connectedCountriesCoordinates]);
+  }, [selectedCountryCoordinates, connectedCountriesCoordinates, direction]);
 
   return (
     <main className="relative grow">
@@ -126,7 +126,7 @@ export function VotesPage() {
         direction={direction}
         type={type}
         isOpen={isDrawerOpen}
-        country={country.name}
+        country={country}
         handleToggle={handleToggleDrawer}
       />
     </main>

@@ -66,14 +66,17 @@ export function EuropeMap({
     labelLayers?.forEach(({ id, filter }) =>
       map?.setFilter(id, ["all", filter, ["in", "code", ...highlightCountries]])
     );
-  }, [labelLayers, highlightCountries]);
+  }, [labelLayers, highlightCountries, map]);
 
-  const handleClick = useCallback(({ point }) => {
-    const features = mapRef.current?.queryRenderedFeatures(point, {
-      layers: [EurovisionLayerProps.id],
-    });
-    handleClickCountry(features[0]?.properties);
-  }, []);
+  const handleClick = useCallback(
+    ({ point }) => {
+      const features = mapRef.current?.queryRenderedFeatures(point, {
+        layers: [EurovisionLayerProps.id],
+      });
+      handleClickCountry(features[0]?.properties);
+    },
+    [handleClickCountry]
+  );
 
   const arrowsFeaturesData = useMemo(() => {
     const arrowsFeatures = arrowsCoordinates?.map(([start, end]) => ({
