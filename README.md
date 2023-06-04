@@ -144,6 +144,11 @@ The components of our site are isolated from each other, meaning that each page 
 
 **80% of the final grade**
 
+Website: https://com-480-data-visualization.github.io/project-2023-data-connoisseurs/
+
+Process Book: https://github.com/com-480-data-visualization/project-2023-data-connoisseurs/blob/master/process_book.pdf
+
+Screencast: 
 
 ## Late policy
 
