@@ -2,7 +2,7 @@
   "name": "com480-project",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://XioZ.github.io/project-2023-data-connoisseurs",
+  "homepage": "https://com-480-data-visualization.github.io/project-2023-data-connoisseurs/",
   "scripts": {
     "deploy": "pnpm run build && gh-pages -d build",
     "start": "react-scripts start",
