@@ -25,7 +25,7 @@ export function CountryVotesDrawer({
   country,
   handleToggle,
 }) {
-  const DrawerClass = `absolute right-0 top-0 z-10 h-full w-1/3 overflow-y-scroll overflow-visible rounded-l-2xl  bg-background p-4 shadow-lg transition-transform duration-500`;
+  const DrawerClass = `absolute right-0 top-0 z-10 h-full w-1/3 rounded-l-2xl bg-background p-4 shadow-lg transition-transform duration-500`;
 
   const NoData = () => (
     <h5 className="text-left text-sm">
@@ -95,7 +95,7 @@ export function CountryVotesDrawer({
   );
 
   const BarChart = () => (
-    <div className="my-0 mt-0">
+    <div className="h-full overflow-auto">
       <h5 className="text-left text-sm">{`${
         direction === Direction.IN ? "Received" : "Cast"
       }
