@@ -108,7 +108,9 @@ export function CountryVotesDrawer({
       <h5 className="text-left text-sm">{`${
         direction === Direction.IN ? "Received" : "Cast"
       }
-        ${type === Type.TELE ? "tele" : "jury"} votes by countries:`}</h5>
+        ${
+          type === Type.TELE ? "tele" : "jury"
+        } votes by countries (max. 12 points):`}</h5>
 
       <div style={{ marginTop: 0, paddingTop: 0 }}>
         {data && data.length > 24 ? bigBarChart() : smallBarChart()}
