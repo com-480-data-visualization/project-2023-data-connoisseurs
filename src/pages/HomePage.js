@@ -29,7 +29,7 @@ export function HomePage() {
     },
     {
       title: "Voting Blocs",
-      text: `However, over the years, the contest has witnessed the emergence of voting blocs, where neighbouring countries or regions tend to support each other, sometimes leading to predictable voting patterns. While voting blocs are not officially recognised or encouraged, they have become part of the Eurovision lore, adding a unique element of intrigue and sometimes controversy to the competition`,
+      text: `However, over the years, the contest has witnessed the emergence of voting blocs, where neighbouring countries or regions tend to support each other, sometimes leading to predictable voting patterns. While voting blocs are not officially recognised or encouraged, they have become part of the Eurovision lore, adding a unique element of intrigue and sometimes controversy to the competition.`,
     },
     {
       title: "Our Visualizations",
