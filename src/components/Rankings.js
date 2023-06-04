@@ -7,10 +7,12 @@ export function Rankings({
                              countries,
                              pollSource,
                              handleClickCountry,}) {
+    const rankingsText = pollSource === PollSource.Eurovisionworld ? "Eurovisionworld rankings" : "OGAE rankings";
+    const votesText = `shows number of votes received by each country`;
+
     const textDisplay = (
-        <h5 style={{marginTop: "40px"}}>
-            {`${pollSource === PollSource.Eurovisionworld ? "Eurovisionworld rankings: shows number of votes received by each country" : 
-                "OGAE rankings: shows number of points received by each country"} `}
+        <h5 style={{ marginTop: "40px" }}>
+            {`${rankingsText}: ${votesText}`}
         </h5>
     )
 
