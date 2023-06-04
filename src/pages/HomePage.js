@@ -1,5 +1,6 @@
 import * as React from "react";
 import Eurovision from "../assets/eurovision-full.svg";
+import { Path } from "../App";
 
 function Card({ title, text }) {
   return (
@@ -13,6 +14,36 @@ function Card({ title, text }) {
 }
 
 export function HomePage() {
+  const RightArrow = () => (
+    <svg
+      className="inline-block h-4 w-4"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5"
+      ></path>
+    </svg>
+  );
+
+  const Link = (href, label) => (
+    <div className="block flex flex-row items-center justify-center space-x-1">
+      {RightArrow()}
+      <span>
+        See
+        <a className="text-secondary" href={`#${href}`}>
+          {` ${label}`}
+        </a>
+      </span>
+    </div>
+  );
+
   const contents = [
     {
       title: "Song Contest",
@@ -72,6 +103,10 @@ export function HomePage() {
           </span>
           , including whether the voting blocs truly exist. Polls can also be
           explored to see which songs and countries are fan favourites.
+          <br />
+          <br />
+          {Link(Path.Votes, "Votes")}
+          {Link(Path.Polls, "Polls")}
         </>
       ),
     },
