@@ -18,12 +18,22 @@ export function CountryPollsDrawer({
                 <VictoryAxis
                     tickValues={[2016, 2017, 2018, 2019, 2021, 2022]}
                     tickFormat={["2016", "2017", "2018", "2019", "2021", "2022"]}
+                    style={{
+                        tickLabels: { fontSize: 14, fill: "#000000" },
+                    }}
                 />
-                <VictoryAxis dependentAxis tickFormat={(x) => `${x}`} />
+                <VictoryAxis dependentAxis tickFormat={(x) => `${x}`}
+                             style={{
+                                 tickLabels: { fontSize: 14, fill: "#000000" },
+                             }}/>
                 <VictoryLine
                     style={{
                         data: { stroke: "#c43a31" },
                         parent: { border: "1px solid #ccc" },
+                        labels: {
+                            fontSize: 14,
+                            fill: "#000000",
+                        },
                     }}
                     data={data}
                     x="year"
