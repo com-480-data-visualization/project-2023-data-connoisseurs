@@ -27,10 +27,10 @@ export function Rankings({
                 {instructionDisplay}
             </div>
             <div style={{paddingLeft: "80px"}}>
-                <VictoryChart height={data? data.length * 10 : 300}>
+                <VictoryChart height={data? data.length * 10 : 300} padding={{ left: 100, right: 100, top: 20, bottom: 40 }}>
                     <VictoryAxis
                         style={{
-                            tickLabels: { fontSize: 5, fill: "#000000" },
+                            tickLabels: { fontSize: 10, fill: "#000000" },
                         }}
                     />
                     <VictoryBar

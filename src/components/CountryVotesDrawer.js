@@ -37,7 +37,7 @@ export function CountryVotesDrawer({
   );
 
   const smallBarChart = () => (
-    <VictoryChart>
+    <VictoryChart padding={{ left: 150, right: 50, top: 20, bottom: 40 }}>
       <VictoryAxis
         style={{
           tickLabels: { fontSize: 14, fill: "#000000" },
@@ -67,7 +67,7 @@ export function CountryVotesDrawer({
   );
 
   const bigBarChart = () => (
-    <VictoryChart height={data ? data.length * 15 : 300}>
+    <VictoryChart height={data ? data.length * 15 : 300} padding={{ left: 150, right: 50, top: 20, bottom: 40 }}>
       <VictoryAxis
         style={{
           tickLabels: { fontSize: 14, fill: "#000000" },
