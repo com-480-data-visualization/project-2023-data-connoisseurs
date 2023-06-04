@@ -45,7 +45,7 @@ export function CountryVotesDrawer({
         horizontal
         barRatio={0.5}
         data={data}
-        x="country"
+        x="countryCode"
         y="points"
         labels={({ datum }) => datum.points}
         sortKey="points"
@@ -76,7 +76,7 @@ export function CountryVotesDrawer({
         horizontal
         barRatio={0.5}
         data={data}
-        x="country"
+        x="countryCode"
         y="points"
         labels={({ datum }) => datum.points}
         sortKey="points"
@@ -102,6 +102,7 @@ export function CountryVotesDrawer({
         ${type === Type.TELE ? "tele" : "jury"} votes by countries:`}</h5>
 
       <div style={{ marginTop: 0, paddingTop: 0 }}>
+          {console.log(data)}
         {data && data.length > 24 ? bigBarChart() : smallBarChart()}
       </div>
     </div>
