@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/project-2023-data-connoisseurs/static/css/main.30c3f1d0.css",
-    "main.js": "/project-2023-data-connoisseurs/static/js/main.f48ff206.js",
+    "main.js": "/project-2023-data-connoisseurs/static/js/main.350487c9.js",
     "static/js/167.28ef8413.chunk.js": "/project-2023-data-connoisseurs/static/js/167.28ef8413.chunk.js",
     "static/js/146.9b480746.chunk.js": "/project-2023-data-connoisseurs/static/js/146.9b480746.chunk.js",
     "static/media/eurovision-full.svg": "/project-2023-data-connoisseurs/static/media/eurovision-full.ed3c296813f6c34055053ae3f1695979.svg",
     "index.html": "/project-2023-data-connoisseurs/index.html",
     "static/media/logo.svg": "/project-2023-data-connoisseurs/static/media/logo.b38a9b8b2c6c665b60cd48f23092b650.svg",
     "main.30c3f1d0.css.map": "/project-2023-data-connoisseurs/static/css/main.30c3f1d0.css.map",
-    "main.f48ff206.js.map": "/project-2023-data-connoisseurs/static/js/main.f48ff206.js.map",
+    "main.350487c9.js.map": "/project-2023-data-connoisseurs/static/js/main.350487c9.js.map",
     "167.28ef8413.chunk.js.map": "/project-2023-data-connoisseurs/static/js/167.28ef8413.chunk.js.map",
     "146.9b480746.chunk.js.map": "/project-2023-data-connoisseurs/static/js/146.9b480746.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.30c3f1d0.css",
-    "static/js/main.f48ff206.js"
+    "static/js/main.350487c9.js"
   ]
 }
